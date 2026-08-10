@@ -907,7 +907,7 @@ a:hover { text-decoration-color: var(--gold); }
   background: color-mix(in srgb, var(--cream) 8%, transparent);
 }
 /* honeypot field: invisible to humans, tempting to bots */
-.connect-form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 
 .connect__note { margin-top: .9rem; font-size: .8rem; color: var(--cream-mute); }
 
@@ -921,3 +921,31 @@ a:hover { text-decoration-color: var(--gold); }
   transition: transform .5s cubic-bezier(.16,1,.3,1);
 }
 .toast.is-on { transform: translate(-50%, 0); }
+
+/* --- write to Emily ------------------------------------------------------ */
+.write-form { display: grid; gap: .8rem; }
+.write-form input[type="text"],
+.write-form textarea {
+  width: 100%;
+  padding: .85rem 1.1rem;
+  background: color-mix(in srgb, var(--cream) 5%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cream) 20%, transparent);
+  border-radius: var(--r-md);
+  color: var(--cream);
+  transition: border-color .25s var(--ease), background-color .25s var(--ease);
+}
+.write-form textarea { min-height: 120px; resize: vertical; }
+.write-form input::placeholder, .write-form textarea::placeholder { color: var(--cream-mute); }
+.write-form input:focus, .write-form textarea:focus {
+  outline: none; border-color: var(--gold);
+  background: color-mix(in srgb, var(--cream) 8%, transparent);
+}
+.write-form .row2 { display: grid; gap: .8rem; }
+@media (min-width: 640px) { .write-form .row2 { grid-template-columns: 1fr 1fr; } }
+.write-form .consent {
+  display: flex; align-items: flex-start; gap: .6rem;
+  font-size: .82rem; color: var(--cream-mute); cursor: pointer;
+}
+.write-form .consent input { margin-top: .25rem; accent-color: var(--gold); cursor: pointer; }
+.write-form .btn { justify-self: start; }
+.write__note { margin-top: 1rem; font-size: .8rem; color: var(--cream-mute); }

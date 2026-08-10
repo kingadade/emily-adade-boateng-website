@@ -26,7 +26,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css?v=5">
+<link rel="stylesheet" href="assets/css/site.css?v=6">
 
 <script type="application/ld+json">
 {
@@ -895,6 +895,34 @@
     </div>
   </section>
 
+  <!-- ================= WRITE TO EMILY ================= -->
+  <section class="section section--tight" id="write">
+    <div class="wrap connect__inner">
+      <div class="reveal">
+        <span class="eyebrow">Write to Emily</span>
+        <h2 style="margin:1rem 0 1rem">Tell her what a song meant to you.</h2>
+        <p class="lede">Every message is read by Emily's family and team, together with her. The encouraging ones get read out loud.</p>
+        <p class="write__note">Please don't include phone numbers or personal details in the message itself — Emily is thirteen, and her team keeps her correspondence safe.</p>
+      </div>
+      <form class="write-form reveal" action="https://formsubmit.co/abrahamadade@techspringgh.com" method="POST">
+        <input type="hidden" name="_subject" value="Message for Emily — emilyadadeboateng.com">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://www.emilyadadeboateng.com/?sent=1#write">
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="row2">
+          <input type="text" name="name" required placeholder="Your name" aria-label="Your name">
+          <input type="text" name="location" placeholder="Where you're writing from (optional)" aria-label="Your location (optional)">
+        </div>
+        <textarea name="message" required placeholder="Your message to Emily…" aria-label="Your message"></textarea>
+        <label class="consent">
+          <input type="checkbox" name="may_share" value="yes">
+          <span>Emily's team may share my message (first name only) on this site or her pages.</span>
+        </label>
+        <button class="btn" type="submit">Send your message</button>
+      </form>
+    </div>
+  </section>
+
   <!-- ================= BOOKING ================= -->
   <section class="section booking" id="book">
     <div class="wrap booking__inner">
@@ -1006,13 +1034,19 @@
     if (e.target.tagName === 'A') { nav.dataset.open = 'false'; toggle.setAttribute('aria-expanded', 'false'); }
   });
 
-  // Subscription toast: formsubmit redirects back with ?subscribed=1
-  if (new URLSearchParams(location.search).has('subscribed')) {
+  // Post-form toasts: formsubmit redirects back with ?subscribed=1 or ?sent=1
+  (() => {
+    const q = new URLSearchParams(location.search);
+    const msg = q.has('subscribed') ? "You're on the list — welcome to the family."
+              : q.has('sent')       ? "Message sent — Emily's team will read it with her."
+              : null;
+    if (!msg) return;
     const toast = document.getElementById('toast');
+    toast.textContent = msg;
     toast.classList.add('is-on');
     setTimeout(() => toast.classList.remove('is-on'), 5000);
     history.replaceState(null, '', location.pathname + location.hash);
-  }
+  })();
 
   // ---- MOTION LAYER -------------------------------------------------------
 
