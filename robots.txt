@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block nothing — this is a single public page.
+# Old builder URLs 301-redirect via .htaccess.
+
+Sitemap: https://www.emilyadadeboateng.com/sitemap.xml

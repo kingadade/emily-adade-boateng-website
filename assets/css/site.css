@@ -1,0 +1,881 @@
+/* ==========================================================================
+   Emily Adade Boateng — design system
+   Palette derived from the "King of Glory" / "Miracle Working God" artwork:
+   mahogany ground, cathedral gold, crimson accent, warm cream type.
+   ========================================================================== */
+
+:root {
+  /* Ground */
+  --ink:        #17100c;
+  --ink-2:      #211711;
+  --ink-3:      #2e2018;
+  --mahogany:   #3a2318;
+
+  /* Accents */
+  --gold:       #d9a441;
+  --gold-lift:  #f0c874;
+  --crimson:    #b8202b;
+  --crimson-lo: #7d1219;
+
+  /* Type */
+  --cream:      #f6efe4;
+  --cream-dim:  #cbbba6;
+  --cream-mute: #9a8975;
+
+  /* Rhythm */
+  --wrap:  1200px;
+  --gut:   clamp(1.25rem, 4vw, 3rem);
+  --sect:  clamp(4.5rem, 10vw, 9rem);
+
+  --r-sm: 6px;
+  --r-md: 14px;
+  --r-lg: 22px;
+
+  --ease: cubic-bezier(0.4, 0.14, 0.3, 1);
+}
+
+/* --- reset ------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important; animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+img, picture, svg, iframe { display: block; max-width: 100%; }
+img { height: auto; }
+button, input, textarea, select { font: inherit; color: inherit; }
+
+body {
+  background: var(--ink);
+  color: var(--cream);
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-size: clamp(1rem, .96rem + .2vw, 1.0625rem);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* --- type -------------------------------------------------------------- */
+h1, h2, h3, .display {
+  font-family: "Fraunces", ui-serif, Georgia, "Times New Roman", serif;
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.022em;
+  font-variation-settings: "SOFT" 0, "WONK" 1;
+  text-wrap: balance;
+}
+h1, .slide-title { font-size: clamp(2.6rem, 6vw, 5rem); }
+
+/* Visible to screen readers and crawlers, not on screen. Used to give the
+   single <h1> the artist's name without repeating it in the visual design. */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; border: 0;
+}
+h2 { font-size: clamp(2.1rem, 4.6vw, 3.9rem); }
+h3 { font-size: clamp(1.3rem, 1.9vw, 1.65rem); letter-spacing: -0.012em; }
+p  { text-wrap: pretty; }
+
+.eyebrow {
+  font-family: "Inter", sans-serif;
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.lede { font-size: clamp(1.1rem, 1.5vw, 1.35rem); color: var(--cream-dim); line-height: 1.6; }
+.muted { color: var(--cream-mute); }
+
+a { color: var(--gold-lift); text-decoration-color: color-mix(in srgb, var(--gold) 40%, transparent); text-underline-offset: 3px; }
+a:hover { text-decoration-color: var(--gold); }
+
+::selection { background: var(--crimson); color: #fff; }
+
+:focus-visible { outline: 2px solid var(--gold-lift); outline-offset: 3px; border-radius: 3px; }
+
+/* --- layout ------------------------------------------------------------ */
+.wrap { width: min(100% - var(--gut) * 2, var(--wrap)); margin-inline: auto; }
+.section { padding-block: var(--sect); }
+.section--tight { padding-block: clamp(3rem, 6vw, 5rem); }
+
+.rule {
+  height: 1px; border: 0;
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--gold) 38%, transparent), transparent);
+}
+
+.section-head { max-width: 46rem; margin-bottom: clamp(2.5rem, 5vw, 4rem); }
+.section-head .eyebrow { display: block; margin-bottom: 1rem; }
+.section-head h2 + p { margin-top: 1.25rem; }
+
+/* --- buttons ----------------------------------------------------------- */
+.btn {
+  --btn-bg: var(--gold);
+  --btn-fg: #221507;
+  display: inline-flex; align-items: center; gap: .6rem;
+  padding: .85rem 1.6rem;
+  background: var(--btn-bg); color: var(--btn-fg);
+  font-size: .92rem; font-weight: 600; letter-spacing: .01em;
+  border: 1px solid transparent; border-radius: 100px;
+  text-decoration: none; cursor: pointer;
+  transition: transform .25s var(--ease), background-color .25s var(--ease), box-shadow .25s var(--ease);
+}
+.btn:hover { transform: translateY(-2px); background: var(--gold-lift); box-shadow: 0 10px 30px -12px rgba(217,164,65,.7); }
+.btn:active { transform: translateY(0); }
+.btn svg { width: 1.05em; height: 1.05em; flex: none; }
+
+.btn--ghost {
+  --btn-bg: transparent; --btn-fg: var(--cream);
+  border-color: color-mix(in srgb, var(--cream) 26%, transparent);
+}
+.btn--ghost:hover {
+  background: color-mix(in srgb, var(--cream) 8%, transparent);
+  border-color: var(--cream); box-shadow: none;
+}
+
+.btn-row { display: flex; flex-wrap: wrap; gap: .8rem; }
+
+/* --- announcement bar --------------------------------------------------- */
+.announce {
+  position: relative; z-index: 60;
+  background: linear-gradient(90deg, var(--crimson-lo), var(--crimson), var(--crimson-lo));
+  color: #fff;
+  font-size: .78rem; font-weight: 500; letter-spacing: .1em; text-transform: uppercase;
+  text-align: center;
+}
+.announce a {
+  display: block; padding: .65rem var(--gut);
+  color: inherit; text-decoration: none;
+}
+.announce a:hover { background: rgba(0,0,0,.16); }
+.announce .arrow { transition: transform .25s var(--ease); display: inline-block; }
+.announce a:hover .arrow { transform: translateX(4px); }
+
+/* --- header ------------------------------------------------------------ */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  border-bottom: 1px solid color-mix(in srgb, var(--cream) 9%, transparent);
+}
+/* The frosted-glass layer lives on a pseudo-element, NOT the header itself:
+   backdrop-filter turns its element into the containing block for
+   position:fixed descendants, which pinned the mobile menu panel to the
+   68px header instead of the viewport. */
+.site-header::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background: color-mix(in srgb, var(--ink) 72%, transparent);
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+.site-header__inner {
+  display: flex; align-items: center; justify-content: space-between; gap: 1.5rem;
+  min-height: 68px;
+}
+.brand { display: flex; align-items: center; gap: .7rem; text-decoration: none; flex: none; }
+.brand img { width: 34px; height: 34px; border-radius: 8px; }
+.brand__name {
+  font-family: "Fraunces", serif; font-size: 1.02rem; font-weight: 600;
+  color: var(--cream); letter-spacing: -.01em; line-height: 1.1;
+}
+.brand__sub {
+  display: block; font-family: "Inter", sans-serif;
+  font-size: .58rem; font-weight: 600; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--gold);
+}
+
+.nav { display: flex; align-items: center; gap: clamp(1rem, 2vw, 2rem); }
+.nav a {
+  position: relative;
+  font-size: .875rem; font-weight: 500; color: var(--cream-dim);
+  text-decoration: none; padding-block: .4rem;
+  transition: color .2s var(--ease);
+}
+.nav a::after {
+  content: ""; position: absolute; left: 0; bottom: 0;
+  width: 100%; height: 1px; background: var(--gold);
+  transform: scaleX(0); transform-origin: right;
+  transition: transform .3s var(--ease);
+}
+.nav a:hover { color: var(--cream); }
+.nav a:hover::after, .nav a[aria-current="page"]::after { transform: scaleX(1); transform-origin: left; }
+.nav a[aria-current="page"] { color: var(--cream); }
+
+.header-cta { flex: none; }
+
+.nav-toggle {
+  display: none; background: none; border: 0; padding: .5rem; cursor: pointer;
+  color: var(--cream);
+}
+.nav-toggle svg { width: 24px; height: 24px; }
+
+@media (max-width: 900px) {
+  /* Toggle stays above the open panel so it can always close the menu. */
+  .nav-toggle { display: block; position: relative; z-index: 70; }
+  .header-cta { display: none; }
+  .nav {
+    position: fixed; inset: 0 0 0 auto; width: min(80vw, 320px);
+    z-index: 60;
+    flex-direction: column; align-items: flex-start; justify-content: center;
+    gap: 1.5rem; padding: 2rem var(--gut);
+    background: var(--ink-2);
+    border-left: 1px solid color-mix(in srgb, var(--gold) 22%, transparent);
+    box-shadow: -30px 0 60px -20px rgba(0,0,0,.7);
+    transform: translateX(100%);
+    transition: transform .35s var(--ease);
+  }
+  .nav[data-open="true"] { transform: translateX(0); }
+  .nav a { font-size: 1.35rem; font-family: "Fraunces", serif; color: var(--cream); }
+}
+
+/* --- hero -------------------------------------------------------------- */
+.hero {
+  position: relative;
+  padding-block: clamp(2.75rem, 5vw, 4.25rem) clamp(2.75rem, 5vw, 4rem);
+  overflow: hidden;
+  background:
+    radial-gradient(120% 80% at 78% 18%, color-mix(in srgb, var(--mahogany) 92%, transparent) 0%, transparent 62%),
+    radial-gradient(90% 70% at 12% 88%, color-mix(in srgb, var(--crimson-lo) 34%, transparent) 0%, transparent 60%),
+    var(--ink);
+}
+.hero::after {
+  /* subtle cathedral-light wash */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(58% 46% at 72% 32%, rgba(240,200,116,.16), transparent 70%);
+}
+.hero__inner {
+  position: relative; z-index: 1;
+  display: grid; gap: clamp(2.5rem, 5vw, 4.5rem);
+  grid-template-columns: 1fr;
+  align-items: center;
+}
+@media (min-width: 920px) {
+  .hero__inner { grid-template-columns: 1.06fr .94fr; }
+}
+
+.hero h1 { margin-block: 1.4rem 1.6rem; }
+.hero h1 em { font-style: normal; color: var(--gold-lift); }
+.hero .lede { max-width: 36ch; }
+.hero .btn-row { margin-top: 2.25rem; }
+
+/* Capped so the whole hero — headline, buttons and slider dots — clears a
+   900px-tall laptop viewport without scrolling. */
+.hero__art { position: relative; max-width: 430px; margin-inline: auto; width: 100%; }
+.hero__art img {
+  width: 100%; border-radius: var(--r-lg);
+  box-shadow:
+    0 2px 0 color-mix(in srgb, var(--gold) 30%, transparent),
+    0 40px 90px -30px rgba(0,0,0,.9);
+}
+.hero__badge {
+  position: absolute; left: -.75rem; bottom: 1.5rem;
+  display: flex; align-items: center; gap: .55rem;
+  padding: .55rem 1rem;
+  background: var(--crimson); color: #fff;
+  font-size: .7rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  border-radius: 100px;
+  box-shadow: 0 14px 34px -14px rgba(184,32,43,.9);
+}
+.hero__badge .dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #fff;
+  animation: pulse 2.2s var(--ease) infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .35; transform: scale(.8); } }
+
+/* --- hero slider -------------------------------------------------------- */
+/* Slides stack in one grid cell and cross-fade; only the active one is
+   interactive, so tab order never lands on a hidden slide. */
+.slider { position: relative; }
+
+.slides { display: grid; }
+.slide {
+  grid-area: 1 / 1;
+  opacity: 0; visibility: hidden;
+  transform: translateY(14px);
+  /* Outgoing: fade out fast, no delay. */
+  transition: opacity .3s var(--ease), transform .3s var(--ease), visibility 0s linear .3s;
+}
+.slide[data-active="true"] {
+  opacity: 1; visibility: visible; transform: none;
+  /* Incoming: wait for the outgoing slide to clear, then fade in.
+     Without the delay the two headlines overlap and read as a double exposure. */
+  transition: opacity .45s var(--ease) .28s, transform .5s var(--ease) .28s, visibility 0s;
+}
+
+/* Arrows sit at the outer edges of the hero, clear of the text column. */
+.slider__arrow {
+  position: absolute; top: 50%; z-index: 3;
+  transform: translateY(-50%);
+  width: 48px; height: 48px;
+  display: grid; place-items: center;
+  background: color-mix(in srgb, var(--ink) 55%, transparent);
+  backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+  border: 1px solid color-mix(in srgb, var(--cream) 22%, transparent);
+  border-radius: 50%;
+  color: var(--cream); cursor: pointer;
+  transition: background-color .25s var(--ease), border-color .25s var(--ease), transform .25s var(--ease);
+}
+.slider__arrow:hover {
+  background: var(--gold); border-color: var(--gold); color: #221507;
+  transform: translateY(-50%) scale(1.08);
+}
+.slider__arrow svg { width: 21px; height: 21px; }
+.slider__arrow--prev { left: calc(var(--gut) * -1 + .25rem); }
+.slider__arrow--next { right: calc(var(--gut) * -1 + .25rem); }
+
+@media (max-width: 1340px) {
+  /* Once the wrap touches the viewport edges, tuck the arrows just inside. */
+  .slider__arrow--prev { left: .35rem; }
+  .slider__arrow--next { right: .35rem; }
+}
+@media (max-width: 620px) {
+  /* Arrows drop onto the same row as the dots: prev at the far left, next at
+     the far right, dots centred between them. bottom:0 lines them up with the
+     dots row, which reserves 40px of height for exactly this. */
+  .slider__arrow { width: 40px; height: 40px; top: auto; bottom: 0; transform: none; }
+  .slider__arrow:hover { transform: scale(1.08); }
+  .slider__arrow--prev { left: 0; right: auto; }
+  .slider__arrow--next { right: 0; left: auto; }
+}
+
+.slider__dots {
+  position: relative; z-index: 3;
+  display: flex; justify-content: center; align-items: center; gap: .55rem;
+  margin-top: clamp(2.25rem, 4vw, 3.25rem);
+}
+.slider__dot {
+  width: 9px; height: 9px; padding: 0;
+  background: color-mix(in srgb, var(--cream) 26%, transparent);
+  border: 0; border-radius: 50%; cursor: pointer;
+  transition: background-color .3s var(--ease), width .3s var(--ease);
+}
+.slider__dot:hover { background: color-mix(in srgb, var(--cream) 52%, transparent); }
+.slider__dot[aria-selected="true"] { width: 30px; border-radius: 100px; background: var(--gold); }
+
+@media (max-width: 620px) {
+  .slider__dots { margin-top: 2rem; min-height: 40px; }
+}
+
+/* Award slide: photo instead of square art */
+.hero__art--photo img { aspect-ratio: 4 / 5; object-fit: cover; object-position: center 20%; }
+
+.hero__pill {
+  display: inline-flex; align-items: center; gap: .5rem;
+  margin-bottom: .35rem; padding: .35rem .85rem;
+  border: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
+  border-radius: 100px;
+  background: color-mix(in srgb, var(--gold) 12%, transparent);
+  font-size: .68rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--gold-lift);
+}
+
+/* --- awards ------------------------------------------------------------- */
+.awards__grid { display: grid; gap: clamp(1.25rem, 2.4vw, 2rem); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); align-items: stretch; }
+
+/* Full-width team shot: a ten-person group photo needs the width, so it sits
+   below the two award cards rather than squeezed into a third column. */
+.award-photo { margin: clamp(1.25rem, 2.4vw, 2rem) 0 0; }
+.award-photo picture {
+  display: block; overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--gold) 28%, transparent);
+  border-radius: var(--r-md);
+}
+.award-photo img {
+  width: 100%; aspect-ratio: 21 / 9; object-fit: cover; object-position: center 32%;
+}
+.award-photo figcaption {
+  margin-top: .9rem; font-size: .85rem; color: var(--cream-mute);
+}
+@media (max-width: 700px) {
+  /* Less extreme crop on narrow screens, or the group loses its edges. */
+  .award-photo img { aspect-ratio: 4 / 3; }
+}
+.award {
+  display: flex; flex-direction: column; justify-content: flex-end;
+  min-height: 190px; padding: clamp(1.5rem, 2.6vw, 2rem);
+  background: linear-gradient(155deg, color-mix(in srgb, var(--gold) 16%, transparent), transparent 58%), var(--ink-3);
+  border: 1px solid color-mix(in srgb, var(--gold) 30%, transparent);
+  border-radius: var(--r-md);
+}
+.award__year { font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: auto; }
+.award h3 { font-size: clamp(1.35rem, 2.2vw, 1.75rem); margin-top: 1.25rem; }
+.award p { margin-top: .5rem; font-size: .88rem; color: var(--cream-mute); }
+.award--photo { padding: 0; overflow: hidden; border-color: color-mix(in srgb, var(--cream) 12%, transparent); }
+.award--photo img { width: 100%; height: 100%; min-height: 190px; object-fit: cover; object-position: center 22%; }
+
+/* --- stat strip --------------------------------------------------------- */
+.stats {
+  display: grid; gap: 1px;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  background: color-mix(in srgb, var(--cream) 10%, transparent);
+  border-block: 1px solid color-mix(in srgb, var(--cream) 10%, transparent);
+}
+.stat { background: var(--ink); padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1rem, 2vw, 1.75rem); }
+.stat__n {
+  font-family: "Fraunces", serif; font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+  font-weight: 600; color: var(--gold); line-height: 1;
+}
+.stat__l { margin-top: .5rem; font-size: .8rem; letter-spacing: .06em; color: var(--cream-mute); }
+
+/* --- listen ------------------------------------------------------------- */
+.listen { background: var(--ink-2); }
+.listen__grid {
+  display: grid; gap: clamp(2rem, 4vw, 3.5rem); align-items: start;
+  grid-template-columns: 1fr;
+}
+@media (min-width: 900px) { .listen__grid { grid-template-columns: .85fr 1.15fr; } }
+.embed {
+  border-radius: var(--r-md); overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--cream) 12%, transparent);
+  background: var(--ink-3);
+}
+.embed iframe { width: 100%; border: 0; display: block; }
+
+.platforms { display: grid; gap: .6rem; margin-top: 1.75rem; }
+.platform {
+  display: flex; align-items: center; gap: .9rem;
+  padding: .85rem 1.1rem;
+  background: color-mix(in srgb, var(--cream) 4%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cream) 10%, transparent);
+  border-radius: var(--r-sm);
+  color: var(--cream); text-decoration: none;
+  transition: border-color .25s var(--ease), background-color .25s var(--ease), transform .25s var(--ease);
+}
+.platform:hover {
+  border-color: color-mix(in srgb, var(--gold) 55%, transparent);
+  background: color-mix(in srgb, var(--gold) 8%, transparent);
+  transform: translateX(4px);
+}
+.platform svg { width: 20px; height: 20px; flex: none; color: var(--gold); }
+.platform span { font-weight: 500; font-size: .92rem; }
+.platform .go { margin-left: auto; color: var(--cream-mute); font-size: .85rem; }
+
+/* --- releases ----------------------------------------------------------- */
+.releases {
+  display: grid; gap: clamp(1.25rem, 2.4vw, 2rem);
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+}
+.release {
+  display: flex; flex-direction: column;
+  background: var(--ink-2);
+  border: 1px solid color-mix(in srgb, var(--cream) 9%, transparent);
+  border-radius: var(--r-md); overflow: hidden;
+  transition: border-color .3s var(--ease), transform .3s var(--ease);
+}
+.release:hover { border-color: color-mix(in srgb, var(--gold) 48%, transparent); transform: translateY(-4px); }
+.release__art { position: relative; aspect-ratio: 1; overflow: hidden; background: var(--ink-3); }
+.release__art img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
+.release:hover .release__art img { transform: scale(1.05); }
+.release__tag {
+  position: absolute; top: .75rem; left: .75rem;
+  padding: .25rem .6rem; border-radius: 100px;
+  background: rgba(23,16,12,.82); backdrop-filter: blur(6px);
+  font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--gold);
+}
+.release__body { padding: 1.25rem 1.25rem 1.4rem; display: flex; flex-direction: column; flex: 1; gap: .55rem; }
+.release__body h3 { font-size: 1.2rem; }
+.release__meta { font-size: .78rem; letter-spacing: .08em; text-transform: uppercase; color: var(--cream-mute); }
+.release__body p { font-size: .9rem; color: var(--cream-dim); line-height: 1.55; }
+.release__link {
+  margin-top: auto; padding-top: .9rem;
+  font-size: .82rem; font-weight: 600; letter-spacing: .04em;
+  color: var(--gold); text-decoration: none;
+  display: inline-flex; align-items: center; gap: .4rem;
+}
+.release__link .arrow { transition: transform .25s var(--ease); }
+.release:hover .release__link .arrow { transform: translateX(4px); }
+
+/* --- watch (videos) ----------------------------------------------------- */
+/* Click-to-load facade: a thumbnail button becomes an autoplaying iframe on
+   demand. Seven live YouTube embeds up-front would wreck load time. */
+.videos { display: grid; gap: clamp(1rem, 2vw, 1.5rem); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.video {
+  position: relative; display: block; width: 100%; padding: 0;
+  aspect-ratio: 16 / 9;
+  background: var(--ink-3); border: 1px solid color-mix(in srgb, var(--cream) 10%, transparent);
+  border-radius: var(--r-md); overflow: hidden; cursor: pointer;
+  transition: border-color .3s var(--ease), transform .3s var(--ease);
+}
+.video:hover { border-color: color-mix(in srgb, var(--gold) 48%, transparent); transform: translateY(-3px); }
+.video--feature { grid-column: 1 / -1; }
+@media (min-width: 900px) { .video--feature { grid-column: span 2; grid-row: span 2; } }
+
+.video img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.95); transition: transform .6s var(--ease); }
+.video:hover img { transform: scale(1.04); }
+.video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+.video__scrim {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(23,16,12,.85), transparent 55%);
+}
+.video__play {
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 58px; height: 58px; border-radius: 50%;
+  display: grid; place-items: center;
+  background: color-mix(in srgb, var(--ink) 55%, transparent);
+  backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  border: 1px solid color-mix(in srgb, var(--cream) 35%, transparent);
+  color: var(--cream);
+  transition: background-color .25s var(--ease), transform .25s var(--ease);
+}
+.video:hover .video__play { background: var(--gold); border-color: var(--gold); color: #221507; transform: translate(-50%, -50%) scale(1.1); }
+.video__play svg { width: 22px; height: 22px; margin-left: 3px; }
+.video__label {
+  position: absolute; left: 1rem; right: 1rem; bottom: .85rem;
+  text-align: left; color: var(--cream);
+  font-size: .9rem; font-weight: 600; line-height: 1.35;
+}
+.video__label small { display: block; font-weight: 500; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: .2rem; }
+.video--feature .video__label { font-size: 1.05rem; }
+.video.is-playing .video__scrim, .video.is-playing .video__play, .video.is-playing .video__label, .video.is-playing img { display: none; }
+
+/* TikTok strip: horizontally scrolling row of 9:16 phone-shaped embeds. */
+.shorts { margin-top: clamp(2.5rem, 5vw, 4rem); }
+.shorts__title {
+  display: flex; align-items: center; gap: .6rem;
+  font-size: 1.15rem; margin-bottom: 1.25rem;
+}
+.shorts__title svg { width: 20px; height: 20px; color: var(--gold); flex: none; }
+
+.shorts-strip {
+  display: flex; gap: clamp(.75rem, 1.5vw, 1.25rem);
+  overflow-x: auto;
+  scroll-snap-type: x proximity;
+  padding-bottom: .75rem;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-color: color-mix(in srgb, var(--gold) 40%, transparent) transparent;
+  scrollbar-width: thin;
+}
+.short {
+  flex: none;
+  width: clamp(230px, 24vw, 300px);
+  aspect-ratio: 9 / 16;
+  scroll-snap-align: start;
+  border-radius: var(--r-md); overflow: hidden;
+  background: var(--ink-3);
+  border: 1px solid color-mix(in srgb, var(--cream) 10%, transparent);
+}
+.short iframe { width: 100%; height: 100%; border: 0; display: block; }
+
+.short--follow {
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1.25rem;
+  text-decoration: none;
+  background:
+    radial-gradient(90% 100% at 20% 0%, color-mix(in srgb, var(--crimson-lo) 55%, transparent), transparent 60%),
+    linear-gradient(150deg, var(--mahogany), var(--ink));
+  transition: border-color .3s var(--ease), transform .3s var(--ease);
+}
+.short--follow:hover { border-color: color-mix(in srgb, var(--gold) 48%, transparent); transform: translateY(-3px); }
+.short__follow-label {
+  text-align: center; color: var(--cream); font-weight: 600; font-size: .95rem; line-height: 1.5;
+}
+.video__tiktok-glyph {
+  width: 64px; height: 64px; border-radius: 18px;
+  display: grid; place-items: center;
+  background: color-mix(in srgb, var(--gold) 14%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gold) 38%, transparent);
+  color: var(--gold-lift);
+  transition: transform .25s var(--ease), background-color .25s var(--ease);
+}
+.video__tiktok-glyph svg { width: 30px; height: 30px; }
+.short--follow:hover .video__tiktok-glyph { transform: scale(1.1); background: color-mix(in srgb, var(--gold) 24%, transparent); }
+
+/* --- full tracklist ----------------------------------------------------- */
+/* Multi-column rather than grid: the release blocks have very uneven heights
+   (10 tracks vs 4) and columns flow them without leaving dead space. */
+.tracklists {
+  columns: 3 280px;
+  column-gap: clamp(2rem, 4vw, 3.5rem);
+}
+.tl {
+  break-inside: avoid;
+  margin-bottom: clamp(2.25rem, 4vw, 3rem);
+}
+.tl__head { display: flex; align-items: center; gap: .9rem; margin-bottom: 1rem; }
+.tl__head img {
+  width: 52px; height: 52px; flex: none;
+  border-radius: 8px; object-fit: cover;
+  border: 1px solid color-mix(in srgb, var(--gold) 26%, transparent);
+}
+.tl__title { font-family: "Fraunces", serif; font-size: 1.1rem; font-weight: 600; line-height: 1.2; }
+.tl__meta { margin-top: .2rem; font-size: .7rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
+
+.tl ol { list-style: none; margin: 0; padding: 0; counter-reset: trk; }
+.tl li {
+  counter-increment: trk;
+  display: flex; flex-wrap: wrap; gap: .1rem .75rem; align-items: baseline;
+  padding-block: .55rem;
+  border-top: 1px solid color-mix(in srgb, var(--cream) 9%, transparent);
+  font-size: .92rem; color: var(--cream-dim);
+}
+/* The number stays put; the title and its credit share the remaining width
+   and wrap onto a second line on narrow columns. */
+.tl li > .feat { flex: 1 1 auto; }
+.tl li:last-child { border-bottom: 1px solid color-mix(in srgb, var(--cream) 9%, transparent); }
+.tl li::before {
+  content: counter(trk);
+  flex: none; min-width: 1.15rem;
+  font-size: .78rem; font-variant-numeric: tabular-nums;
+  color: var(--cream-mute);
+}
+.tl li .feat { display: block; font-size: .78rem; color: var(--cream-mute); margin-top: .1rem; }
+.tl--singles li::before { content: "♪"; color: var(--gold); }
+
+/* --- ministry ----------------------------------------------------------- */
+.ministry { background: var(--ink-2); }
+.ministry__grid { display: grid; gap: clamp(1.25rem, 2.4vw, 2rem); grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); }
+.card {
+  padding: clamp(1.75rem, 3vw, 2.4rem);
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--mahogany) 55%, transparent), transparent 62%),
+    var(--ink-3);
+  border: 1px solid color-mix(in srgb, var(--cream) 9%, transparent);
+  border-radius: var(--r-md);
+  transition: border-color .3s var(--ease), transform .3s var(--ease);
+}
+.card:hover { border-color: color-mix(in srgb, var(--gold) 42%, transparent); transform: translateY(-4px); }
+.card__icon {
+  width: 46px; height: 46px; margin-bottom: 1.4rem;
+  display: grid; place-items: center;
+  border-radius: 12px;
+  background: color-mix(in srgb, var(--gold) 15%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gold) 34%, transparent);
+  color: var(--gold);
+}
+.card__icon svg { width: 22px; height: 22px; }
+.card h3 { margin-bottom: .75rem; }
+.card p { font-size: .95rem; color: var(--cream-dim); }
+
+/* --- events ------------------------------------------------------------- */
+.events { display: grid; gap: 0; }
+.event {
+  display: grid; gap: .5rem 2rem; align-items: baseline;
+  grid-template-columns: 1fr;
+  padding-block: clamp(1.5rem, 2.6vw, 2.1rem);
+  border-top: 1px solid color-mix(in srgb, var(--cream) 11%, transparent);
+}
+.event:last-child { border-bottom: 1px solid color-mix(in srgb, var(--cream) 11%, transparent); }
+@media (min-width: 780px) { .event { grid-template-columns: 12rem 1fr auto; } }
+.event__date {
+  font-family: "Fraunces", serif; font-size: 1.05rem; font-weight: 600; color: var(--gold);
+  letter-spacing: 0;
+}
+.event__body h3 { font-size: clamp(1.25rem, 2vw, 1.6rem); margin-bottom: .35rem; }
+.event__body p { font-size: .92rem; color: var(--cream-dim); max-width: 58ch; }
+.event__state {
+  align-self: center;
+  font-size: .68rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  padding: .35rem .8rem; border-radius: 100px;
+  border: 1px solid color-mix(in srgb, var(--cream) 22%, transparent);
+  color: var(--cream-mute); white-space: nowrap;
+}
+.event__state--past { opacity: .65; }
+
+/* --- gallery ------------------------------------------------------------ */
+.gallery {
+  display: grid; gap: .75rem;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  /* Fixed row height + dense flow: every image fills its cell exactly, so a
+     spanning feature tile can't leave the rest of its row half-empty. */
+  grid-auto-rows: clamp(170px, 22vw, 250px);
+  grid-auto-flow: dense;
+}
+.gallery figure { margin: 0; border-radius: var(--r-sm); overflow: hidden; background: var(--ink-3); }
+/* The <picture> wrapper must stretch too, or the img's height:100% resolves
+   against an auto-height parent and the cell shows dead space below. */
+.gallery picture { display: block; height: 100%; }
+/* Biased above centre: tall portraits lose the face on a centre crop. */
+.gallery img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; transition: transform .6s var(--ease), filter .4s var(--ease); filter: saturate(.92); }
+.gallery figure:hover img { transform: scale(1.06); filter: saturate(1.05); }
+.gallery figure:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+@media (max-width: 620px) { .gallery figure:nth-child(1) { grid-column: span 1; grid-row: span 1; } }
+
+/* --- booking CTA -------------------------------------------------------- */
+.booking {
+  position: relative; overflow: hidden;
+  background:
+    radial-gradient(80% 120% at 20% 0%, color-mix(in srgb, var(--crimson-lo) 60%, transparent), transparent 60%),
+    linear-gradient(140deg, var(--mahogany), var(--ink));
+  border-block: 1px solid color-mix(in srgb, var(--gold) 24%, transparent);
+}
+.booking__inner { display: grid; gap: 2rem; align-items: center; }
+@media (min-width: 860px) { .booking__inner { grid-template-columns: 1.4fr auto; } }
+.booking h2 { max-width: 18ch; }
+.booking p { margin-top: 1.1rem; max-width: 46ch; color: var(--cream-dim); }
+
+/* --- footer ------------------------------------------------------------- */
+.site-footer { background: var(--ink); padding-block: clamp(3.5rem, 6vw, 5rem) 2rem; }
+.footer__grid {
+  display: grid; gap: 2.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  padding-bottom: 3rem;
+}
+.footer__brand { max-width: 30ch; }
+.footer__brand p { margin-top: 1rem; font-size: .92rem; color: var(--cream-mute); }
+.footer h4 {
+  font-family: "Inter", sans-serif; font-size: .7rem; font-weight: 700;
+  letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.1rem;
+}
+.footer ul { list-style: none; padding: 0; display: grid; gap: .65rem; }
+.footer ul a { font-size: .92rem; color: var(--cream-dim); text-decoration: none; }
+.footer ul a:hover { color: var(--cream); }
+
+.socials { display: flex; gap: .6rem; margin-top: 1.5rem; }
+.socials a {
+  width: 38px; height: 38px; display: grid; place-items: center;
+  border: 1px solid color-mix(in srgb, var(--cream) 16%, transparent);
+  border-radius: 50%; color: var(--cream-dim);
+  transition: all .25s var(--ease);
+}
+.socials a:hover { color: var(--ink); background: var(--gold); border-color: var(--gold); transform: translateY(-2px); }
+.socials svg { width: 17px; height: 17px; }
+
+.footer__bar {
+  display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;
+  padding-top: 1.75rem;
+  border-top: 1px solid color-mix(in srgb, var(--cream) 10%, transparent);
+  font-size: .8rem; color: var(--cream-mute);
+}
+.footer__bar a { color: var(--cream-mute); }
+
+/* --- scroll reveal ------------------------------------------------------ */
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
+.reveal.is-in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) { .reveal { opacity: 1; transform: none; } }
+
+/* ==========================================================================
+   MOTION LAYER
+   All CSS-native or near-zero JS — no animation library. Every effect is
+   wrapped so `prefers-reduced-motion` disables it, and none of them gate
+   content visibility (crawlers and no-JS users see everything).
+   ========================================================================== */
+
+/* --- 1. Scroll progress rail ---------------------------------------------
+   A hairline of gold that fills as you move down the page. Uses the native
+   scroll-driven animation timeline: no JS, no scroll listener, no jank. */
+.scroll-rail {
+  position: fixed; top: 0; left: 0; right: 0; height: 2px; z-index: 80;
+  background: linear-gradient(90deg, var(--crimson), var(--gold), var(--gold-lift));
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+}
+@supports (animation-timeline: scroll()) {
+  .scroll-rail {
+    animation: rail-fill linear both;
+    animation-timeline: scroll(root block);
+  }
+}
+@keyframes rail-fill { to { transform: scaleX(1); } }
+
+/* --- 2. Headline word reveal ---------------------------------------------
+   The display type is the loudest thing on the page, so it earns the most
+   deliberate entrance: words rise and fade in sequence. Applied only to the
+   ACTIVE slide, so it replays each time the hero rotates. */
+.slide h1 .w, .slide .slide-title .w { display: inline-block; }
+
+/* Resting state is the element's OWN style (visible), and the animation only
+   plays into it with `backwards` fill. Relying on `both` fill to hold the end
+   state breaks when a slide deactivates and reactivates — the finished
+   animation stops applying and the word vanishes. */
+.slide[data-active="true"] h1 .w,
+.slide[data-active="true"] .slide-title .w {
+  animation: word-rise .62s cubic-bezier(.16,1,.3,1) backwards;
+  animation-delay: calc(var(--i, 0) * 55ms + 180ms);
+}
+@keyframes word-rise {
+  from { opacity: 0; transform: translateY(0.5em) rotate(1.5deg); }
+}
+
+/* --- 3. Cover tilt -------------------------------------------------------
+   Album art reacts to the pointer like a physical record sleeve. Pure CSS
+   3D — the JS only feeds it two custom properties. */
+.hero__art { perspective: 1200px; }
+.hero__art picture {
+  display: block;
+  transform: rotateX(var(--ry, 0deg)) rotateY(var(--rx, 0deg)) translateZ(0);
+  transition: transform .5s cubic-bezier(.16,1,.3,1);
+  transform-style: preserve-3d;
+}
+.hero__art:hover picture { transition-duration: .12s; }
+
+/* Sheen that sweeps across the sleeve as it tilts */
+.hero__art picture::after {
+  content: ""; position: absolute; inset: 0; border-radius: var(--r-lg);
+  background: linear-gradient(105deg, transparent 35%,
+    color-mix(in srgb, #fff 18%, transparent) 50%, transparent 65%);
+  opacity: 0; transition: opacity .4s var(--ease);
+  pointer-events: none;
+}
+.hero__art:hover picture::after { opacity: 1; }
+
+/* --- 4. Counting stats ---------------------------------------------------
+   The numbers tick up when the strip scrolls into view. Tabular figures stop
+   the layout jittering as digits change. */
+.stat__n { font-variant-numeric: tabular-nums; }
+
+/* --- 5. Song-title ribbon ------------------------------------------------
+   An endless marquee of her track titles. Editorial, and it puts 36 song
+   names in front of the eye without a wall of list. */
+.ribbon {
+  overflow: hidden; padding-block: clamp(1.5rem, 3vw, 2.25rem);
+  border-block: 1px solid color-mix(in srgb, var(--gold) 22%, transparent);
+  background: linear-gradient(90deg, var(--ink), var(--ink-2), var(--ink));
+  --mask: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+  -webkit-mask-image: var(--mask); mask-image: var(--mask);
+}
+.ribbon__track {
+  display: flex; gap: 0; width: max-content;
+  animation: ribbon-slide 46s linear infinite;
+}
+.ribbon:hover .ribbon__track { animation-play-state: paused; }
+.ribbon__track span {
+  font-family: "Fraunces", serif; font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-weight: 600; letter-spacing: -.02em; white-space: nowrap;
+  color: color-mix(in srgb, var(--cream) 42%, transparent);
+  padding-inline: clamp(1rem, 2vw, 1.75rem);
+  transition: color .3s var(--ease);
+}
+.ribbon__track span:nth-child(even) { color: var(--gold); }
+.ribbon:hover .ribbon__track span { color: var(--cream); }
+@keyframes ribbon-slide { to { transform: translateX(-50%); } }
+
+/* --- 6. Gallery lightbox -------------------------------------------------
+   Tapping a photo opens it full-size instead of doing nothing. Uses the
+   native <dialog> element, so Escape, backdrop click and focus trapping
+   are all browser-provided rather than reimplemented. */
+.lightbox {
+  border: 0; padding: 0; background: transparent;
+  max-width: 94vw; max-height: 94vh;
+}
+.lightbox::backdrop { background: rgba(12, 8, 6, .88); backdrop-filter: blur(6px); }
+.lightbox img { max-width: 94vw; max-height: 90vh; border-radius: var(--r-md); display: block; }
+.lightbox__close {
+  position: absolute; top: -.5rem; right: -.5rem;
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--gold); color: #221507; border: 0; cursor: pointer;
+  font-size: 1.2rem; line-height: 1; display: grid; place-items: center;
+}
+.gallery figure { cursor: zoom-in; }
+
+/* --- 7. Section headings: rule that draws itself ------------------------- */
+.section-head h2 { position: relative; display: inline-block; }
+.section-head h2::after {
+  content: ""; position: absolute; left: 0; bottom: -.35rem; height: 2px; width: 100%;
+  background: linear-gradient(90deg, var(--gold), transparent);
+  transform: scaleX(0); transform-origin: 0 50%;
+  transition: transform .9s cubic-bezier(.16,1,.3,1) .15s;
+}
+.section-head.is-in h2::after { transform: scaleX(1); }
+
+/* --- Reduced motion: everything above becomes static --------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .scroll-rail { display: none; }
+  .slide h1 .w, .slide .slide-title .w { opacity: 1; transform: none; animation: none; }
+  .ribbon__track { animation: none; }
+  .hero__art picture { transform: none !important; }
+  .section-head h2::after { transition: none; transform: scaleX(1); }
+}

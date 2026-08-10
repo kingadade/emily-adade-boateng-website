@@ -1,0 +1,48 @@
+# Emily Adade Boateng — Hostinger (Apache/LiteSpeed)
+
+# --- Redirects from the old Website Builder pages (301 = permanent) ---------
+Redirect 301 /about-emily /#story
+Redirect 301 /portfolio /#music
+Redirect 301 /contact /#book
+Redirect 301 /stream-music /#listen
+Redirect 301 /blog-post1 /#story
+Redirect 301 /journey /#story
+Redirect 301 /emily-adade-boateng-the-rising-star /#story
+
+# --- Force HTTPS + canonical www --------------------------------------------
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://www.emilyadadeboateng.com/$1 [L,R=301]
+RewriteCond %{HTTP_HOST} ^emilyadadeboateng\.com$ [NC]
+RewriteRule ^(.*)$ https://www.emilyadadeboateng.com/$1 [L,R=301]
+
+# --- Caching ----------------------------------------------------------------
+# Assets are versioned or renamed when they change, so they cache hard.
+# HTML must NEVER be cached by browsers or the CDN: a stale copy of this file
+# is how the deleted builder site kept reappearing for days after launch.
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType image/jpeg  "access plus 30 days"
+  ExpiresByType image/webp  "access plus 30 days"
+  ExpiresByType image/png   "access plus 30 days"
+  ExpiresByType text/css    "access plus 7 days"
+</IfModule>
+
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|xml|txt)$">
+    Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
+    Header set Pragma "no-cache"
+    Header unset ETag
+    # Hostinger's CDN honours this and stops holding the page at the edge.
+    Header set CDN-Cache-Control "no-store"
+  </FilesMatch>
+  <FilesMatch "\.(jpg|jpeg|png|webp|css)$">
+    Header set Cache-Control "public, max-age=2592000, immutable"
+  </FilesMatch>
+</IfModule>
+FileETag None
+
+# --- Compression -------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css application/javascript image/svg+xml
+</IfModule>

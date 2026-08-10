@@ -1,0 +1,11 @@
+# Secrets — never commit
+.ftp-credentials
+
+# 30MB of master images; the site serves the optimized copies in assets/img
+assets/original/
+
+# Local tooling and build artefacts
+deploy.sh
+*.zip
+.DS_Store
+.claude/

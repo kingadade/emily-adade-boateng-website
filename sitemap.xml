@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://www.emilyadadeboateng.com/</loc>
+    <lastmod>2026-08-04</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.emilyadadeboateng.com/assets/img/cover-defender.jpg</image:loc>
+      <image:title>Defender — Emily Adade Boateng</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.emilyadadeboateng.com/assets/img/cover-nyame-prekope.jpg</image:loc>
+      <image:title>Nyame Pr&#603;kop&#603; — Emily Adade Boateng</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.emilyadadeboateng.com/assets/img/cover-miracle-working-god.jpg</image:loc>
+      <image:title>Miracle Working God — Emily Adade Boateng</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.emilyadadeboateng.com/assets/img/award-team.jpg</image:loc>
+      <image:title>Emily Adade Boateng at the Western Music Awards 2025</image:title>
+    </image:image>
+  </url>
+</urlset>
