@@ -26,7 +26,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css?v=4">
+<link rel="stylesheet" href="assets/css/site.css?v=5">
 
 <script type="application/ld+json">
 {
@@ -871,6 +871,30 @@
     </div>
   </section>
 
+  <!-- ================= STAY CONNECTED ================= -->
+  <section class="section section--tight connect" id="connect">
+    <div class="wrap connect__inner">
+      <div class="reveal">
+        <span class="eyebrow">Stay in the loop</span>
+        <h2 style="margin:1rem 0 1rem">Be first to hear the next song.</h2>
+        <p class="lede">New releases, concert dates and ministry news — straight to you. No noise, just the moments that matter.</p>
+      </div>
+      <div class="reveal">
+        <form class="connect-form" action="https://formsubmit.co/abrahamadade@techspringgh.com" method="POST">
+          <input type="hidden" name="_subject" value="New subscriber — emilyadadeboateng.com">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_next" value="https://www.emilyadadeboateng.com/?subscribed=1#connect">
+          <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+          <input type="email" name="email" required placeholder="Your email address" aria-label="Email address">
+          <button class="btn" type="submit">Notify me</button>
+        </form>
+        <p class="connect__note">Prefer WhatsApp?
+          <a href="https://wa.me/233244239155?text=JOIN%20%E2%80%94%20please%20add%20me%20to%20Emily%27s%20updates" target="_blank" rel="noopener">Join the WhatsApp updates list</a> instead.
+        </p>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= BOOKING ================= -->
   <section class="section booking" id="book">
     <div class="wrap booking__inner">
@@ -946,6 +970,7 @@
           <li><a href="https://wa.me/233244239155" target="_blank" rel="noopener">WhatsApp enquiry</a></li>
           <li><a href="tel:+233244239155">+233 24 423 9155</a></li>
           <li><a href="mailto:abrahamadade@techspringgh.com">abrahamadade@techspringgh.com</a></li>
+          <li><a href="#connect">Get updates</a></li>
         </ul>
       </div>
     </div>
@@ -956,6 +981,13 @@
     </div>
   </div>
 </footer>
+
+<div class="toast" id="toast" role="status">You're on the list — welcome to the family.</div>
+
+<dialog class="lightbox" id="lightbox">
+  <button class="lightbox__close" aria-label="Close image">&times;</button>
+  <img alt="">
+</dialog>
 
 <script>
   // year
@@ -973,6 +1005,14 @@
   nav.addEventListener('click', e => {
     if (e.target.tagName === 'A') { nav.dataset.open = 'false'; toggle.setAttribute('aria-expanded', 'false'); }
   });
+
+  // Subscription toast: formsubmit redirects back with ?subscribed=1
+  if (new URLSearchParams(location.search).has('subscribed')) {
+    const toast = document.getElementById('toast');
+    toast.classList.add('is-on');
+    setTimeout(() => toast.classList.remove('is-on'), 5000);
+    history.replaceState(null, '', location.pathname + location.hash);
+  }
 
   // ---- MOTION LAYER -------------------------------------------------------
 
@@ -1174,10 +1214,6 @@
   });
 </script>
 
-<dialog class="lightbox" id="lightbox">
-  <button class="lightbox__close" aria-label="Close image">&times;</button>
-  <img alt="">
-</dialog>
 
 </body>
 </html>
