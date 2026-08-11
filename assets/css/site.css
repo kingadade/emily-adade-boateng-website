@@ -850,6 +850,9 @@ a:hover { text-decoration-color: var(--gold); }
 .lightbox {
   border: 0; padding: 0; background: transparent;
   max-width: 94vw; max-height: 94vh;
+  /* the global `* { margin: 0 }` reset kills the UA's `margin: auto` that
+     centres a native dialog — restore it explicitly */
+  margin: auto;
 }
 .lightbox::backdrop { background: rgba(12, 8, 6, .88); backdrop-filter: blur(6px); }
 .lightbox img { max-width: 94vw; max-height: 90vh; border-radius: var(--r-md); display: block; }
