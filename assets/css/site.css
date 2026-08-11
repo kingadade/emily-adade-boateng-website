@@ -949,3 +949,70 @@ a:hover { text-decoration-color: var(--gold); }
 .write-form .consent input { margin-top: .25rem; accent-color: var(--gold); cursor: pointer; }
 .write-form .btn { justify-self: start; }
 .write__note { margin-top: 1rem; font-size: .8rem; color: var(--cream-mute); }
+
+/* --- milestone timeline --------------------------------------------------- */
+.timeline { margin-top: clamp(3rem, 6vw, 5rem); }
+.tl-line {
+  list-style: none; margin: 0; padding: 0;
+  position: relative;
+  display: grid; gap: clamp(1.6rem, 3vw, 2.4rem);
+}
+/* the spine */
+.tl-line::before {
+  content: ""; position: absolute; top: .4rem; bottom: .4rem;
+  left: calc(var(--ms-col) / 2);
+  width: 1px;
+  background: linear-gradient(180deg,
+    transparent,
+    color-mix(in srgb, var(--gold) 45%, transparent) 8%,
+    color-mix(in srgb, var(--gold) 45%, transparent) 92%,
+    transparent);
+}
+.tl-line { --ms-col: 7.5rem; }
+.ms {
+  display: grid; grid-template-columns: var(--ms-col) 1fr;
+  gap: clamp(1.25rem, 3vw, 2.5rem);
+  align-items: start;
+}
+.ms__year {
+  position: relative;
+  justify-self: center; text-align: center;
+  font-family: "Fraunces", serif; font-weight: 600;
+  font-size: .95rem; color: var(--gold);
+  background: var(--ink-2);            /* sits on the section bg, masks the spine */
+  padding-block: .15rem;
+  white-space: nowrap;
+}
+.ms h3 { font-size: clamp(1.15rem, 1.8vw, 1.45rem); margin-bottom: .3rem; }
+.ms p { font-size: .92rem; color: var(--cream-dim); max-width: 52ch; }
+.ms--gold h3 { color: var(--gold-lift); }
+
+/* staggered entrance, driven by the existing .reveal observer on the parent */
+.ms { opacity: 0; transform: translateY(14px); }
+.reveal.is-in .ms {
+  animation: ms-in .55s cubic-bezier(.16,1,.3,1) forwards;
+  animation-delay: calc(var(--n) * 90ms);
+}
+@keyframes ms-in { to { opacity: 1; transform: none; } }
+
+@media (max-width: 560px) {
+  .tl-line { --ms-col: 4.5rem; }
+  .ms__year { font-size: .8rem; }
+}
+
+/* --- anchor offset under the sticky header -------------------------------- */
+section[id], div[id="top"] { scroll-margin-top: 84px; }
+
+/* --- lightbox entrance/exit ------------------------------------------------ */
+.lightbox[open] { animation: lb-in .32s cubic-bezier(.16,1,.3,1); }
+.lightbox[open]::backdrop { animation: lb-bd .32s ease; }
+.lightbox.closing { animation: lb-out .18s ease forwards; }
+.lightbox.closing::backdrop { animation: lb-bd .18s ease reverse forwards; }
+@keyframes lb-in { from { opacity: 0; transform: scale(.94) translateY(10px); } }
+@keyframes lb-bd { from { opacity: 0; } }
+@keyframes lb-out { to { opacity: 0; transform: scale(.96); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .ms { opacity: 1; transform: none; animation: none !important; }
+  .lightbox[open], .lightbox[open]::backdrop { animation: none; }
+}
