@@ -16,6 +16,10 @@ RewriteRule ^(.*)$ https://www.emilyadadeboateng.com/$1 [L,R=301]
 RewriteCond %{HTTP_HOST} ^emilyadadeboateng\.com$ [NC]
 RewriteRule ^(.*)$ https://www.emilyadadeboateng.com/$1 [L,R=301]
 
+
+# --- Working files that ship with the Git checkout but aren't site content ---
+RedirectMatch 404 ^/content/
+
 # --- Caching ----------------------------------------------------------------
 # Assets are versioned or renamed when they change, so they cache hard.
 # HTML must NEVER be cached by browsers or the CDN: a stale copy of this file
