@@ -1019,3 +1019,34 @@ section[id], div[id="top"] { scroll-margin-top: 84px; }
   .ms { opacity: 1; transform: none; animation: none !important; }
   .lightbox[open], .lightbox[open]::backdrop { animation: none; }
 }
+
+/* --- awards voting panel (Western Gospel Awards — remove after the show) --- */
+.vote {
+  margin-bottom: clamp(2.5rem, 5vw, 4rem);
+  padding: clamp(1.75rem, 3.5vw, 2.75rem);
+  border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
+  border-radius: var(--r-md);
+  background:
+    radial-gradient(110% 140% at 90% -10%, color-mix(in srgb, var(--crimson-lo) 55%, transparent), transparent 55%),
+    linear-gradient(150deg, var(--mahogany), var(--ink-2));
+}
+.vote__head h3 { font-size: clamp(1.5rem, 2.6vw, 2.1rem); margin: 1rem 0 .6rem; }
+.vote__head p { color: var(--cream-dim); max-width: 60ch; }
+.vote__cats { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; gap: .5rem; }
+@media (min-width: 760px) { .vote__cats { grid-template-columns: 1fr 1fr; } }
+.vote__cats li {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: .7rem 1rem;
+  background: color-mix(in srgb, var(--ink) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cream) 10%, transparent);
+  border-radius: var(--r-sm);
+  font-size: .92rem;
+}
+.vote__cats small { display: block; color: var(--cream-mute); font-size: .78rem; }
+.vote__cats code {
+  font-family: "Inter", sans-serif; font-weight: 700; letter-spacing: .04em;
+  color: #221507; background: var(--gold);
+  padding: .3rem .7rem; border-radius: 100px; white-space: nowrap;
+}
+.vote__how { margin-top: 1.5rem; }
+.vote__note { margin-top: .9rem; font-size: .8rem; color: var(--cream-mute); }
