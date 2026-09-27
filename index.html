@@ -26,7 +26,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css?v=8">
+<link rel="stylesheet" href="assets/css/site.css?v=9">
 
 <script type="application/ld+json">
 {
@@ -155,7 +155,7 @@
         </article>
 
         <!-- 2 — the Defender single -->
-        <article class="slide hero__inner" role="group" aria-roledescription="slide" aria-label="2 of 6: Defender">
+        <article class="slide hero__inner slide--float" role="group" aria-roledescription="slide" aria-label="2 of 6: Defender">
           <div>
             <span class="eyebrow">New single</span>
             <h2 class="slide-title"><em>Defender</em>.</h2>
@@ -1308,6 +1308,75 @@
     el.style.transitionDelay = `${Math.min(i % 4, 3) * 70}ms`;
     io.observe(el);
   });
+
+  // ---- 3D MOTION LAYER ----------------------------------------------------
+  // Three effects, all rendered by CSS (site.css, motion layer 8–10); this
+  // only writes custom properties. Nothing attaches when the visitor prefers
+  // reduced motion. The floating cover (10) is pure CSS and needs no JS.
+  (() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const fine = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+    // 8. Release covers tilt toward the pointer; the glare follows it.
+    const arts = [...document.querySelectorAll('#music .release__art')];
+    if (fine) {
+      arts.forEach(art => {
+        let raf = 0, ev = null;
+        const paint = () => {
+          raf = 0;
+          const r = art.getBoundingClientRect();
+          const x = (ev.clientX - r.left) / r.width;   // 0..1 across the card
+          const y = (ev.clientY - r.top) / r.height;
+          art.style.setProperty('--ry', ((x - .5) * 16).toFixed(2) + 'deg');
+          art.style.setProperty('--rx', ((.5 - y) * 16).toFixed(2) + 'deg');
+          art.style.setProperty('--gx', (x * 100).toFixed(1) + '%');
+          art.style.setProperty('--gy', (y * 100).toFixed(1) + '%');
+        };
+        art.addEventListener('pointerenter', () => art.classList.add('is-tilting'));
+        art.addEventListener('pointermove', e => { ev = e; if (!raf) raf = requestAnimationFrame(paint); });
+        art.addEventListener('pointerleave', () => {
+          cancelAnimationFrame(raf); raf = 0;
+          art.classList.remove('is-tilting');
+          art.style.setProperty('--rx', '0deg');
+          art.style.setProperty('--ry', '0deg');
+        });
+      });
+    } else {
+      // Touch: an empty touchstart listener is what lets iOS Safari apply
+      // :active to the card for the press lift.
+      arts.forEach(art => art.addEventListener('touchstart', () => {}, { passive: true }));
+    }
+
+    // 9. Hero depth parallax: --px/--py in −1..1 on .hero, planes in CSS.
+    const hero = document.querySelector('.hero');
+    if (!hero) return;
+    let hraf = 0, px = 0, py = 0;
+    const apply = () => {
+      hraf = 0;
+      hero.style.setProperty('--px', px.toFixed(3));
+      hero.style.setProperty('--py', py.toFixed(3));
+    };
+    const aim = (x, y) => {
+      px = Math.max(-1, Math.min(1, x));
+      py = Math.max(-1, Math.min(1, y));
+      if (!hraf) hraf = requestAnimationFrame(apply);
+    };
+    if (fine) {
+      hero.addEventListener('pointermove', e => {
+        const r = hero.getBoundingClientRect();
+        aim((e.clientX - r.left) / r.width * 2 - 1, (e.clientY - r.top) / r.height * 2 - 1);
+      });
+      hero.addEventListener('pointerleave', () => aim(0, 0));
+    } else if ('DeviceOrientationEvent' in window && typeof DeviceOrientationEvent.requestPermission !== 'function') {
+      // Phones that fire orientation without a prompt (Android, iOS < 13).
+      // iOS 13+ exposes requestPermission; we never prompt, so it is skipped.
+      window.addEventListener('deviceorientation', e => {
+        if (e.gamma == null || e.beta == null) return;
+        // gamma: left/right roll; beta: pitch, about 45° when held in the hand.
+        aim(e.gamma / 30, (e.beta - 45) / 30);
+      }, { passive: true });
+    }
+  })();
 </script>
 
 
