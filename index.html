@@ -26,7 +26,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/site.css?v=9">
+<link rel="stylesheet" href="assets/css/site.css?v=10">
 
 <script type="application/ld+json">
 {
@@ -1370,8 +1370,11 @@
     } else if ('DeviceOrientationEvent' in window && typeof DeviceOrientationEvent.requestPermission !== 'function') {
       // Phones that fire orientation without a prompt (Android, iOS < 13).
       // iOS 13+ exposes requestPermission; we never prompt, so it is skipped.
+      // Only while the hero is on screen — the sensor fires ~60Hz all session.
+      let seen = true;
+      new IntersectionObserver(([e]) => { seen = e.isIntersecting; if (!seen) aim(0, 0); }).observe(hero);
       window.addEventListener('deviceorientation', e => {
-        if (e.gamma == null || e.beta == null) return;
+        if (!seen || e.gamma == null || e.beta == null) return;
         // gamma: left/right roll; beta: pitch, about 45° when held in the hand.
         aim(e.gamma / 30, (e.beta - 45) / 30);
       }, { passive: true });

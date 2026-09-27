@@ -470,7 +470,7 @@ a:hover { text-decoration-color: var(--gold); }
 .release__art img { width: 100%; height: 100%; object-fit: cover; transition: transform .6s var(--ease); }
 .release:hover .release__art img { transform: scale(1.05); }
 .release__tag {
-  position: absolute; top: .75rem; left: .75rem;
+  position: absolute; top: .75rem; left: .75rem; z-index: 2;
   padding: .25rem .6rem; border-radius: 100px;
   background: rgba(23,16,12,.82); backdrop-filter: blur(6px);
   font-size: .62rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
@@ -894,8 +894,6 @@ a:hover { text-decoration-color: var(--gold); }
     opacity: 0; transition: opacity .4s var(--ease);
   }
   .release__art.is-tilting::after { opacity: 1; }
-  /* The rotating picture is a stacking context; keep the tag above it. */
-  .release__tag { z-index: 2; }
 }
 @media (hover: none) and (prefers-reduced-motion: no-preference) {
   .release__art picture { transition: transform .25s var(--ease); }
@@ -934,6 +932,11 @@ a:hover { text-decoration-color: var(--gold); }
   }
   .slide--float[data-active="true"] .hero__art img { animation: cover-float 7s ease-in-out infinite alternate; }
   .slide--float[data-active="true"] .hero__art::before { animation: cover-shadow 7s ease-in-out infinite alternate; }
+  /* Pause with the slider (WCAG 2.2.2): hover/focus stops the float too. */
+  .slider:hover .slide--float[data-active="true"] .hero__art img,
+  .slider:focus-within .slide--float[data-active="true"] .hero__art img,
+  .slider:hover .slide--float[data-active="true"] .hero__art::before,
+  .slider:focus-within .slide--float[data-active="true"] .hero__art::before { animation-play-state: paused; }
 }
 @keyframes cover-float {
   from { transform: translateY(6px) rotateZ(-1deg); }
