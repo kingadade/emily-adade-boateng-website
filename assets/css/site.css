@@ -624,6 +624,16 @@ a:hover { text-decoration-color: var(--gold); }
 }
 .tl li .feat { display: block; font-size: .78rem; color: var(--cream-mute); margin-top: .1rem; }
 .tl--singles li::before { content: "♪"; color: var(--gold); }
+/* Songs with a lyrics page carry a small link at the end of the row. */
+.tl li .tl__lyrics {
+  margin-left: auto; align-self: center;
+  font-size: .68rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--gold); text-decoration: none;
+  padding: .2rem .55rem; border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent); border-radius: 100px;
+}
+.tl li .tl__lyrics:hover { color: var(--gold-lift); border-color: var(--gold-lift); }
+/* Let the credit shrink so the pill stays on the title line. */
+.tl li:has(.tl__lyrics) > .feat { flex: 0 1 auto; }
 
 /* --- ministry ----------------------------------------------------------- */
 .ministry { background: var(--ink-2); }

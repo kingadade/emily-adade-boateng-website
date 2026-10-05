@@ -1,0 +1,171 @@
+/* ==========================================================================
+   Lyrics pages (/lyrics/). Loaded after site.css, which supplies the tokens,
+   header, footer and buttons. Reading view is a cream page for long reading;
+   Projector view flips to the dark ground with large type for church screens.
+   ========================================================================== */
+
+.skip {
+  position: absolute; left: 1rem; top: -4rem; z-index: 100;
+  padding: .7rem 1.1rem; border-radius: var(--r-sm);
+  background: var(--gold); color: #221507; font-weight: 600; text-decoration: none;
+}
+.skip:focus { top: 1rem; }
+
+/* The closed mobile menu sits off-screen; its shadow shows against the cream page. */
+@media (max-width: 900px) { .nav:not([data-open="true"]) { box-shadow: none; } }
+
+/* --- hero ------------------------------------------------------------- */
+.lyr-hero {
+  background: var(--crimson-lo); color: var(--cream);
+  padding-block: clamp(2.5rem, 6vw, 4.5rem) clamp(2.25rem, 5vw, 3.5rem);
+}
+.lyr-hero__inner { display: flex; flex-wrap: wrap; gap: clamp(1.5rem, 4vw, 2.5rem); align-items: flex-end; }
+.lyr-hero__art { flex: none; }
+.lyr-hero__art img {
+  width: clamp(120px, 18vw, 176px); aspect-ratio: 1; object-fit: cover;
+  border-radius: var(--r-md); box-shadow: 0 22px 44px -14px rgba(0,0,0,.55);
+}
+.lyr-hero__text { flex: 1 1 22rem; min-width: 0; display: flex; flex-direction: column; gap: .8rem; }
+.lyr-hero .eyebrow { color: var(--gold-lift); }
+.lyr-hero h1 { font-size: clamp(2.6rem, 7vw, 4.6rem); }
+.lyr-back { align-self: flex-start; font-size: .9rem; color: var(--gold-lift); text-decoration: none; }
+.lyr-back:hover { text-decoration: underline; }
+.lyr-sub { font-size: 1.05rem; color: #f3dcc8; }
+
+/* --- page ------------------------------------------------------------- */
+.lyr-page { background: var(--cream); color: var(--ink); }
+.lyr-page a { color: var(--crimson-lo); text-decoration-color: color-mix(in srgb, var(--crimson-lo) 35%, transparent); }
+.lyr-page a:hover { color: var(--crimson); text-decoration-color: currentColor; }
+.lyr-page :focus-visible { outline-color: var(--crimson-lo); }
+
+.lyr-layout {
+  display: flex; flex-wrap: wrap; gap: clamp(2rem, 5vw, 3.5rem);
+  padding-block: clamp(2rem, 4vw, 2.75rem) clamp(4rem, 8vw, 6rem);
+}
+.lyr-main { flex: 999 1 34rem; min-width: 0; display: flex; flex-direction: column; gap: 2.1rem; }
+.lyr-aside { flex: 1 1 18rem; min-width: 0; display: flex; flex-direction: column; gap: 1rem; }
+
+/* view toggle */
+.lyr-view {
+  display: inline-flex; align-self: flex-start; gap: 4px; padding: 4px;
+  border-radius: 100px; background: #ebdfcd;
+}
+.lyr-view[hidden] { display: none; }
+.lyr-view button {
+  min-height: 44px; padding: 0 1.1rem; border: 0; border-radius: 100px;
+  background: transparent; color: #4a382c; font-size: .9rem; font-weight: 600; cursor: pointer;
+}
+.lyr-view button[aria-pressed="true"] { background: var(--ink); color: var(--cream); }
+
+.lyr-notice {
+  font-size: .95rem; line-height: 1.6; color: #4a382c;
+  padding: .9rem 1.1rem; border-radius: var(--r-md);
+  background: #fbf7f0; border: 1px solid #d8c8b2;
+}
+
+/* sections */
+.lyr-sec { display: flex; flex-direction: column; gap: .7rem; }
+.lyr-sec__label {
+  display: flex; align-items: center; gap: .6rem;
+  font-family: "Inter", sans-serif; font-size: .72rem; font-weight: 600;
+  letter-spacing: .18em; text-transform: uppercase; line-height: 1.4;
+  color: var(--crimson-lo);
+}
+.lyr-x2 {
+  font-size: .68rem; letter-spacing: .06em; padding: .15rem .5rem;
+  border-radius: 100px; border: 1px solid #d8c8b2; color: #6b5646;
+}
+.lyr-repeat { font-size: .78rem; letter-spacing: .02em; text-transform: none; font-weight: 400; font-style: italic; color: #6b5646; }
+.lyr-lines { display: flex; flex-direction: column; gap: .2rem; font-family: "Fraunces", Georgia, serif; font-size: clamp(1.2rem, 1.1rem + .5vw, 1.4rem); line-height: 1.5; }
+.lyr-note {
+  margin-left: .5rem; font-family: "Inter", sans-serif; font-size: .7rem; font-weight: 600;
+  letter-spacing: .1em; text-transform: uppercase; color: #6b5646; white-space: nowrap;
+}
+
+/* prev / next */
+.lyr-pager {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+  padding-top: 1.5rem; border-top: 1px solid #d8c8b2;
+}
+.lyr-pager a {
+  display: flex; flex-direction: column; gap: .15rem; min-height: 44px;
+  font-family: "Fraunces", serif; font-size: 1.15rem; font-weight: 600; text-decoration: none;
+}
+.lyr-pager small { font-family: "Inter", sans-serif; font-size: .7rem; letter-spacing: .14em; text-transform: uppercase; color: #6b5646; }
+.lyr-pager__next { text-align: right; align-items: flex-end; }
+
+/* aside cards */
+.lyr-card {
+  display: flex; flex-direction: column; gap: .75rem; padding: 1.4rem;
+  border-radius: var(--r-lg); background: #fbf7f0; border: 1px solid #d8c8b2;
+}
+.lyr-card p { font-size: .95rem; line-height: 1.6; color: #4a382c; }
+.lyr-card__h {
+  font-family: "Inter", sans-serif; font-size: .72rem; font-weight: 600;
+  letter-spacing: .16em; text-transform: uppercase; line-height: 1.4; color: var(--crimson-lo);
+}
+.lyr-card--dark { background: var(--ink); border-color: var(--ink); color: var(--cream); }
+.lyr-card--dark .lyr-card__h { color: var(--gold); }
+.lyr-card--dark .btn { justify-content: center; color: #221507; text-decoration: none; }
+.lyr-stream { display: flex; flex-wrap: wrap; gap: .5rem; }
+.lyr-page .lyr-stream a {
+  flex: 1 1 5rem; display: flex; align-items: center; justify-content: center; min-height: 44px;
+  border-radius: 100px; border: 1px solid #5a3d2c; color: var(--cream); font-size: .88rem; text-decoration: none;
+}
+.lyr-page .lyr-stream a:hover { border-color: var(--gold); color: var(--gold-lift); }
+.lyr-cardlink { font-weight: 600; }
+
+.lyr-list { padding: 1.1rem .6rem; gap: .4rem; }
+.lyr-list .lyr-card__h { padding-inline: .8rem; }
+.lyr-list ul { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 2px; }
+.lyr-page .lyr-list a {
+  display: flex; flex-direction: column; gap: .05rem; min-height: 52px; justify-content: center;
+  padding: .5rem .8rem; border-radius: 12px; color: var(--ink); text-decoration: none;
+}
+.lyr-page .lyr-list a:hover { background: #f1e6d6; color: var(--ink); }
+.lyr-page .lyr-list a[aria-current="page"] { background: var(--crimson-lo); color: var(--cream); }
+.lyr-list__t { font-family: "Fraunces", serif; font-size: 1.05rem; font-weight: 600; line-height: 1.25; }
+.lyr-list__m { font-size: .72rem; letter-spacing: .06em; opacity: .75; }
+
+/* --- index page ------------------------------------------------------- */
+.lyr-index { display: flex; flex-direction: column; gap: clamp(2.5rem, 5vw, 3.5rem); padding-block: clamp(2.5rem, 5vw, 3.5rem) clamp(4rem, 8vw, 6rem); }
+.lyr-group__h { font-size: clamp(1.6rem, 3vw, 2.1rem); margin-bottom: 1.1rem; }
+.lyr-tiles { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: 1rem; }
+.lyr-page .lyr-tile {
+  display: flex; gap: 1rem; align-items: center; height: 100%; padding: .9rem;
+  border-radius: var(--r-md); background: #fbf7f0; border: 1px solid #d8c8b2;
+  color: var(--ink); text-decoration: none;
+  transition: border-color .2s var(--ease), transform .2s var(--ease);
+}
+.lyr-page .lyr-tile:hover { border-color: var(--crimson-lo); transform: translateY(-2px); color: var(--ink); }
+.lyr-tile picture { flex: none; }
+.lyr-tile img { width: 76px; height: 76px; object-fit: cover; border-radius: 10px; }
+.lyr-tile__text { display: flex; flex-direction: column; gap: .1rem; min-width: 0; }
+.lyr-tile__t { font-family: "Fraunces", serif; font-size: 1.2rem; font-weight: 600; line-height: 1.2; }
+.lyr-tile__m { font-size: .7rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--crimson-lo); }
+.lyr-tile__l { font-size: .88rem; color: #6b5646; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+/* --- projector view --------------------------------------------------- */
+[data-view="projector"] .lyr-page { background: var(--ink); color: var(--cream); }
+[data-view="projector"] .lyr-aside,
+[data-view="projector"] .lyr-hero__art,
+[data-view="projector"] .lyr-sub,
+[data-view="projector"] .lyr-pager { display: none; }
+[data-view="projector"] .lyr-hero { padding-block: 1.5rem; }
+[data-view="projector"] .lyr-hero h1 { font-size: clamp(2rem, 4vw, 3rem); }
+[data-view="projector"] .lyr-main { flex-basis: 100%; gap: 3rem; }
+[data-view="projector"] .lyr-lines { font-size: clamp(1.8rem, 1.2rem + 2.4vw, 3.2rem); gap: .5rem; line-height: 1.35; }
+[data-view="projector"] .lyr-sec__label { font-size: .95rem; color: var(--gold); }
+[data-view="projector"] .lyr-x2 { border-color: #5a3d2c; color: var(--cream-mute); }
+[data-view="projector"] .lyr-repeat,
+[data-view="projector"] .lyr-note { color: var(--cream-mute); }
+[data-view="projector"] .lyr-view { background: var(--ink-3); }
+[data-view="projector"] .lyr-view button { color: var(--cream-dim); }
+[data-view="projector"] .lyr-view button[aria-pressed="true"] { background: var(--cream); color: var(--ink); }
+[data-view="projector"] .lyr-notice { background: var(--ink-2); border-color: var(--mahogany); color: var(--cream-dim); }
+
+@media print {
+  .site-header, .site-footer, .lyr-aside, .lyr-view, .lyr-pager, .skip { display: none !important; }
+  .lyr-hero, .lyr-page { background: #fff !important; color: #000 !important; }
+  .lyr-hero .eyebrow, .lyr-back { color: #000 !important; }
+}

@@ -1,0 +1,607 @@
+{
+ "_readme": "Source for the /lyrics/ pages. Edit here, then run: python3 content/build-lyrics.py. Lines are strings, or {\"t\": line, \"note\": small label}. A section with \"repeat\": true prints only its label. \"x2\": true shows a ×2 mark. \"akan\": true on a song shows the translation-coming note. Song order here is the order on the site. Optional \"hook\" overrides the line quoted on the index page.",
+ "songs": [
+  {
+   "slug": "defender",
+   "title": "Defender",
+   "release": "Single",
+   "year": "2026",
+   "sub": "Jehovah Nissi — the Lord our Banner",
+   "cover": "cover-defender",
+   "video": "eByEmMEnzOM",
+   "sections": [
+    {
+     "label": "Intro",
+     "lines": [
+      "Jehovah Nissi is His name",
+      "Our Banner, Banner is His name",
+      "Our Banner, my Banner, your Banner, our Banner"
+     ]
+    },
+    {
+     "label": "Verse 1",
+     "lines": [
+      "Lord, Your word is yes and amen",
+      "See how Pharaoh’s chariots and",
+      "army were cast into the sea",
+      "The mighty man in battle is You"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "lines": [
+      "Your enemies, your enemies you see today",
+      "You shall see no more",
+      "Jehovah Nissi is His name",
+      "The Lord our Banner, Defender",
+      "Defender, Defender, Defender"
+     ]
+    },
+    {
+     "label": "Verse 2",
+     "x2": true,
+     "lines": [
+      "Who is this God of war?",
+      "Jehovah Nissi is His name",
+      "See how He will destroy",
+      "the wicked for His name’s sake"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    }
+   ]
+  },
+  {
+   "slug": "glory",
+   "title": "Glory",
+   "release": "Single",
+   "year": "December 2025",
+   "sub": "I See Your Glory",
+   "cover": "cover-glory",
+   "video": "X0bzhNH5S5w",
+   "sections": [
+    {
+     "label": "Intro",
+     "lines": [
+      "Everybody sing:",
+      "Eh-oh, eh-oh, eh-oh-oh",
+      "Eh-oh, eh-oh, eh-oh-oh",
+      "I see Your glory! I see Your glory!"
+     ]
+    },
+    {
+     "label": "Verse 1",
+     "lines": [
+      "When I see the morning sun",
+      "When I see the stars at night",
+      "Everything around me",
+      "Shows me You are God"
+     ]
+    },
+    {
+     "label": "Pre-chorus",
+     "lines": [
+      "From the sky to the ocean",
+      "From the birds to the trees",
+      "I can see, I can see",
+      "Your glory all around me!"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "lines": [
+      "I see Your glory! (Glory, glory!)",
+      "I see Your glory! (Glory, glory!)",
+      "Everything You made is beautiful",
+      "Everything You made is wonderful",
+      "I see Your glory! (Glory, glory!)",
+      "I see Your glory! (Glory, glory!)",
+      "Nobody, nobody greater than You",
+      "Nobody, nobody greater than You"
+     ]
+    },
+    {
+     "label": "Verse 2",
+     "lines": [
+      "When I see the mountains high",
+      "When I see the rivers flow",
+      "Every single thing You made",
+      "Shows me You’re in control"
+     ]
+    },
+    {
+     "label": "Pre-chorus",
+     "repeat": true
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    },
+    {
+     "label": "Outro",
+     "lines": [
+      "Hosanna, hosanna, hosanna in the highest",
+      "Hosanna, hosanna, hosanna in the highest",
+      "Glory, glory, glory, glory, glory",
+      "We sing glory, glory, glory, glory, glory",
+      "I see Your glory, I see Your glory",
+      "Everything You made is beautiful",
+      "Everything You made is wonderful"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    },
+    {
+     "label": "Ending",
+     "lines": [
+      "Hosanna, hosanna, hosanna in the highest",
+      "Hosanna, hosanna, hosanna in the highest",
+      "I see Your glory, I see Your glory",
+      "Glory to Your name"
+     ]
+    }
+   ],
+   "hook": "I see Your glory! I see Your glory!"
+  },
+  {
+   "slug": "wafi",
+   "title": "W’afi",
+   "release": "Nyame Prɛkopɛ",
+   "year": "2026",
+   "sub": "Afi Yi — Your Year",
+   "akan": true,
+   "cover": "cover-nyame-prekope",
+   "sections": [
+    {
+     "label": "Verse 1",
+     "x2": true,
+     "lang": "ak",
+     "lines": [
+      "Sɛ ye daso tse nkwamu dea",
+      "Oseifo no anyay’en dea",
+      "Afi ako abeto yen biom"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "x2": true,
+     "lang": "ak",
+     "lines": [
+      "Afi yi ɛbɛyɛyie",
+      "Afi yi yɛ maa fee",
+      "Nyame nti ɛbɛyɛyie",
+      "Afi yi ye ma fe"
+     ]
+    },
+    {
+     "label": "Verse 2",
+     "x2": true,
+     "lang": "ak",
+     "lines": [
+      "Yɛ wo nkoa, yɛ wo adze",
+      "Yɛ wo Jesus a, yɛ wo adze",
+      "Mpɛmpɛn soa wo ne me",
+      "Abɛdu yi, eye Nyame na adom"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    },
+    {
+     "label": "Bridge",
+     "x2": true,
+     "lines": [
+      "This is the year of blessings —",
+      "my Lord has said it, and it will surely come to pass"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    }
+   ]
+  },
+  {
+   "slug": "ayeyi",
+   "title": "Ayeyi",
+   "release": "Nyame Prɛkopɛ",
+   "year": "2026",
+   "sub": "Mekamfo Awuradi — taste and see that God is God",
+   "akan": true,
+   "cover": "cover-nyame-prekope",
+   "sections": [
+    {
+     "label": "Verse 1",
+     "x2": true,
+     "lang": "ak",
+     "lines": [
+      "Ohiane waa nipa emfa me enye hwe",
+      "Me su fre wo na wasesa me shebre",
+      "Na wo yi me efi nia me suronyinaa",
+      "Den nkoa na mefayi wa ye"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "x2": true,
+     "lang": "ak",
+     "lines": [
+      "Ayeyi ene ntomtom nkaa wo daa",
+      "Mekamfo wo din no daa",
+      "Ayeyi ene ntomtom nka wo daa",
+      "Mekamfo wo din no daa"
+     ]
+    },
+    {
+     "label": "Verse 2",
+     "x2": true,
+     "lang": "ak",
+     "lines": [
+      "Oh bra na be so hwe na",
+      "Wo be huno se Awuradi ye",
+      "Nyira ne nia ode ne ho to osor",
+      "Sor hene nkoa so da nyinaa",
+      "Taste and see that God is God"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    },
+    {
+     "label": "Bridge",
+     "lines": [
+      "I shall not die but live to declare the goodness of the Lord",
+      "Ayeyi nkaa wo daa, ndase nka wo daa"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    }
+   ]
+  },
+  {
+   "slug": "onyankopon",
+   "title": "Onyankopɔn",
+   "release": "Nyame Prɛkopɛ",
+   "year": "2026",
+   "sub": "Great God of power — You reign forever",
+   "akan": true,
+   "cover": "cover-nyame-prekope",
+   "sections": [
+    {
+     "label": "Verse 1",
+     "lang": "ak",
+     "lines": [
+      "Mmepɔw kotow w’anim",
+      "Na abɔfo to w’ayeyi dwom",
+      "Ɔsoro bɔ gyegyeegye",
+      "Wɔbɔ Wo abotiri sɛ Ɔhene",
+      "Efi owia apuei kosi anadwo",
+      "W’anuonyam hyerɛn",
+      "Wo tum nni awiei"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "x2": true,
+     "lang": "ak",
+     "lines": [
+      "Onyankopɔn kɛse na ɔwɔ tumi",
+      "Wo na wudi hene",
+      "Daa daa",
+      "Wo tim hɔ daa daa",
+      "Wo na wudi hene"
+     ]
+    },
+    {
+     "label": "Verse 2",
+     "lang": "ak",
+     "lines": [
+      "Ahome biara a bɛka sɛ wo yɛ Nyame",
+      "Adebɔ pae mu ka sɛ wo yɛ Nyame",
+      "Wone Onyankopɔn",
+      "Obiara nni hɔ"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    },
+    {
+     "label": "Bridge · call and response",
+     "lines": [
+      {
+       "t": "Who is like You?",
+       "note": "No one, no one"
+      },
+      {
+       "t": "Who can stand You?",
+       "note": "No one, no one"
+      },
+      {
+       "t": "Who is holy?",
+       "note": "Only You, only You"
+      },
+      {
+       "t": "Who is worthy?",
+       "note": "Only You, only You"
+      }
+     ]
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    }
+   ]
+  },
+  {
+   "slug": "sesa",
+   "title": "Sesa",
+   "release": "Nyame Prɛkopɛ",
+   "year": "2026",
+   "sub": "Sesa W’adwene · feat. Ablin Adade Boateng",
+   "akan": true,
+   "cover": "cover-nyame-prekope",
+   "sections": [
+    {
+     "label": "Verse 1",
+     "lang": "ak",
+     "lines": [
+      "Obofuo no kakyerɛ Apostle John sɛ",
+      "Kyerɛw koma Sardis asafo no sɛ",
+      "Me nim mo ndwuma nyinaa",
+      "Me nim sɛ mo yɛ tiase ewu",
+      "Mon sakra mo adwen",
+      "Fi sɛ mere ba tisɛ owifoo"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "x2": true,
+     "lang": "ak",
+     "lines": [
+      "Sesa wo adwen, sakra wo adwen",
+      "Nyame nim wo ndwuma nyinaa",
+      "Sesa wo adwen, sakra wo adwen",
+      "Nyame nim wo ndwuma nyinaa",
+      "Sesa ooo, onim wo ndwuma nyinaa"
+     ]
+    },
+    {
+     "label": "Verse 2",
+     "lang": "ak",
+     "lines": [
+      "Afeso kyerɛw ko ma Laodicia asafo",
+      "Me nim mo ndwuma nyinaa sɛ",
+      "Mo enyɛ nwun na mo enyɛ hye",
+      {
+       "t": "I will spit you out of my mouth",
+       "note": "×2"
+      },
+      {
+       "t": "O me mba",
+       "note": "×2"
+      }
+     ]
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    },
+    {
+     "label": "Bridge",
+     "lines": [
+      "Hold fast and repent, ooh — for you are neither cold nor warm",
+      "For I the Lord will vomit you out of my mouth",
+      "Sesa ooo, onyim wo ndwuma nyinaa"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    }
+   ]
+  },
+  {
+   "slug": "never-be-the-same",
+   "title": "Never Be the Same",
+   "release": "Nyame Prɛkopɛ",
+   "year": "2026",
+   "sub": "Our lives transformed",
+   "cover": "cover-nyame-prekope",
+   "sections": [
+    {
+     "label": "Intro",
+     "lines": [
+      "Praise God"
+     ]
+    },
+    {
+     "label": "Verse 1",
+     "lines": [
+      "We give You thanks, O Lord God Almighty,",
+      "The One who is and who was and who is to come,",
+      "Because You have taken Your great power and reigned.",
+      "Praise God in His sanctuary,",
+      "Praise Him in His mighty heavens.",
+      "Indeed You reign over all."
+     ]
+    },
+    {
+     "label": "Chorus",
+     "x2": true,
+     "lines": [
+      "Your kingdom stretches from shore to shore,",
+      "Your love endures forevermore.",
+      "With hearts lifted high, we’ll sing Your name,",
+      "Our lives transformed, we’ll never be the same."
+     ]
+    },
+    {
+     "label": "Verse 2",
+     "lines": [
+      "Praise Him for His acts of power,",
+      "Praise Him for His surpassing greatness.",
+      "You are the One who heals our diseases,",
+      "The One who died for me. You are the centre of my praise,",
+      "My Redeemer and King. Indeed You reign over all."
+     ]
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    },
+    {
+     "label": "Bridge · key change",
+     "lines": [
+      "Holy, holy is the Lord Almighty,",
+      "Your glory fills the earth and sky.",
+      "We give You thanks, O Lord God Almighty,"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    },
+    {
+     "label": "Ending",
+     "lines": [
+      "We give You thanks, O Lord God Almighty,",
+      "The One who is and who was and who is to come,",
+      "Forever we’ll proclaim Your holy name,",
+      "Our lives forever changed, all for Your fame."
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "mighty-rock",
+   "title": "Mighty Rock",
+   "release": "King of Glory",
+   "year": "2024",
+   "sub": "feat. Ablin Adade Boateng",
+   "cover": "tracklist-king-of-glory",
+   "video": "x-72n86E8yg",
+   "sections": [
+    {
+     "label": "Verse 1",
+     "lines": [
+      "The biggest Rock is You, Lord",
+      "The strongest Rock is You, Lord",
+      "The highest ever Rock",
+      "Indeed You are the Rock",
+      "Oh God, the Rock of Ages — mighty, mighty Rock, great God"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "x2": true,
+     "lines": [
+      "The unbreakable Rock",
+      "The unmoveable Rock",
+      "Indeed the Rock of Ages",
+      "Oh God, the unmoveable Rock",
+      "Indeed the Rock of Ages — mighty, mighty Rock, great God"
+     ]
+    },
+    {
+     "label": "Verse 2",
+     "lines": [
+      "The mighty Rock is You, Lord",
+      "Majestic Rock is You, Lord",
+      "You are the greatest Rock",
+      "Indeed You are the Rock",
+      "Oh God, the Rock of Ages",
+      "Mighty, mighty Rock, great God"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    }
+   ]
+  },
+  {
+   "slug": "i-love-you-lord",
+   "title": "I Love You Lord",
+   "release": "King of Glory",
+   "year": "2024",
+   "sub": "For You reign as King",
+   "cover": "tracklist-king-of-glory",
+   "sections": [
+    {
+     "label": "Verse 1",
+     "lines": [
+      "God is good, all the time",
+      "In every season",
+      "Your grace divine",
+      "We pledge our lives forever true",
+      "To serve You, Lord, in all we do",
+      "Your love, Your love is real"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "x2": true,
+     "lines": [
+      "I love You, Lord",
+      "I love You, Lord",
+      "For You reign as King, Majesty"
+     ]
+    },
+    {
+     "label": "Verse 2",
+     "lines": [
+      "With joyful hearts we sing Your praise",
+      "Our voices raise in endless days",
+      "Your love surrounds, so vast and deep",
+      "In Your promises we trust and keep",
+      "We walk by faith, not by sight,",
+      "Led by Your word, our guiding light"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    },
+    {
+     "label": "Tag · “I love You” in six languages",
+     "lines": [
+      "Oh, oh, oh, oh, oh",
+      {
+       "t": "Me dɔ wo, me dɔ wo — Yesu, me dɔ wo",
+       "note": "Twi"
+      },
+      {
+       "t": "Mé lɔ wo, mé lɔ wo — Mawu, mé lɔ wo",
+       "note": "Ewe"
+      },
+      {
+       "t": "Mi sumɔ bo, mi sumɔ bo — Yesu, mi sumɔ bo",
+       "note": "Ga"
+      },
+      {
+       "t": "Ina sonka, ina sonka — Ubangiji",
+       "note": "Hausa"
+      },
+      {
+       "t": "Je t’aime, je t’aime — Seigneur, Seigneur",
+       "note": "French"
+      },
+      {
+       "t": "Te amo, te amo — Señor, Señor",
+       "note": "Spanish"
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
