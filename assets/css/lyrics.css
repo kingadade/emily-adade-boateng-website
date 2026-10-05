@@ -28,6 +28,7 @@
 .lyr-hero__text { flex: 1 1 22rem; min-width: 0; display: flex; flex-direction: column; gap: .8rem; }
 .lyr-hero .eyebrow { color: var(--gold-lift); }
 .lyr-hero h1 { font-size: clamp(2.6rem, 7vw, 4.6rem); }
+.lyr-h1-tag { font-size: .42em; font-weight: 400; letter-spacing: 0; color: var(--gold-lift); white-space: nowrap; }
 .lyr-back { align-self: flex-start; font-size: .9rem; color: var(--gold-lift); text-decoration: none; }
 .lyr-back:hover { text-decoration: underline; }
 .lyr-sub { font-size: 1.05rem; color: #f3dcc8; }

@@ -1,5 +1,5 @@
 {
- "_readme": "Source for the /lyrics/ pages. Edit here, then run: python3 content/build-lyrics.py. Lines are strings, or {\"t\": line, \"note\": small label}. A section with \"repeat\": true prints only its label. \"x2\": true shows a ×2 mark. \"akan\": true on a song shows the translation-coming note. Song order here is the order on the site. Optional \"hook\" overrides the line quoted on the index page.",
+ "_readme": "Source for the /lyrics/ pages. Edit here, then run: python3 content/build-lyrics.py. Lines are strings, or {\"t\": line, \"note\": small label}. A section with \"repeat\": true prints only its label. \"x2\": true shows a ×2 mark. \"akan\": true on a song shows the translation-coming note. Song order here is the order on the site. Optional \"hook\" overrides the line quoted on the index page. Optional \"aka\" is another name people search for; it goes into the page title.",
  "songs": [
   {
    "slug": "defender",
@@ -51,7 +51,8 @@
      "label": "Chorus",
      "repeat": true
     }
-   ]
+   ],
+   "aka": "Jehovah Nissi"
   },
   {
    "slug": "glory",
@@ -145,7 +146,8 @@
      ]
     }
    ],
-   "hook": "I see Your glory! I see Your glory!"
+   "hook": "I see Your glory! I see Your glory!",
+   "aka": "I See Your Glory"
   },
   {
    "slug": "wafi",
@@ -204,7 +206,8 @@
      "label": "Chorus",
      "repeat": true
     }
-   ]
+   ],
+   "aka": "Afi Yi"
   },
   {
    "slug": "ayeyi",
@@ -264,7 +267,8 @@
      "label": "Chorus",
      "repeat": true
     }
-   ]
+   ],
+   "aka": "Mekamfo Awuradi"
   },
   {
    "slug": "onyankopon",
@@ -407,7 +411,8 @@
      "label": "Chorus",
      "repeat": true
     }
-   ]
+   ],
+   "aka": "Sesa W’adwene"
   },
   {
    "slug": "never-be-the-same",

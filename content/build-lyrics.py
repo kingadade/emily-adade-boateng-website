@@ -15,7 +15,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://www.emilyadadeboateng.com"
-CSS_V = "1"        # bump when assets/css/lyrics.css changes
+CSS_V = "2"        # bump when assets/css/lyrics.css changes
 SITE_CSS_V = "13"  # keep in step with index.html
 
 data = json.loads((ROOT / "content" / "lyrics.json").read_text(encoding="utf-8"))
@@ -235,8 +235,10 @@ def render_sections(song):
 def song_page(i, s):
     url = f"{SITE}/lyrics/{s['slug']}/"
     img = f"{SITE}/assets/img/{s['cover']}.jpg"
-    title = f"{s['title']} Lyrics — Emily Adade Boateng"
-    desc = f"Lyrics to “{s['title']}” by Emily Adade Boateng, from {('the ' + s['year'] + ' single') if s['release'] == 'Single' else ('the album ' + s['release'] + ' (' + s['year'] + ')')}. “{first_line(s)}…”"
+    aka = s.get("aka")
+    name = f"{s['title']} ({aka})" if aka else s["title"]
+    title = f"{name} Lyrics — Emily Adade Boateng"
+    desc = f"{name} lyrics by Emily Adade Boateng, from {('the ' + s['year'] + ' single') if s['release'] == 'Single' else ('the album ' + s['release'] + ' (' + s['year'] + ')')}. “{first_line(s)}…”"
     rec = {"@type": "MusicRecording", "name": s["title"],
            "byArtist": {"@type": "MusicGroup", "name": "Emily Adade Boateng", "url": SITE + "/"}}
     if s["release"] != "Single":
@@ -248,10 +250,15 @@ def song_page(i, s):
     jsonld = {
         "@context": "https://schema.org", "@type": "MusicComposition",
         "name": s["title"], "url": url,
+        **({"alternateName": aka} if aka else {}),
         "inLanguage": ["ak", "en"] if s.get("akan") else "en",
         "lyrics": {"@type": "CreativeWork", "text": plain_lines(s)},
         "recordedAs": rec,
     }
+    crumbs = {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [
+        {"@type": "ListItem", "position": 1, "name": "Emily Adade Boateng", "item": SITE + "/"},
+        {"@type": "ListItem", "position": 2, "name": "Lyrics", "item": SITE + "/lyrics/"},
+        {"@type": "ListItem", "position": 3, "name": s["title"], "item": url}]}
     prev_s = songs[i - 1] if i > 0 else None
     next_s = songs[i + 1] if i + 1 < len(songs) else None
     pager = []
@@ -270,7 +277,7 @@ def song_page(i, s):
     if s.get("video"):
         watch = f'\n          <a class="btn" href="https://www.youtube.com/watch?v={s["video"]}" target="_blank" rel="noopener">Watch the official video</a>'
 
-    return f"""{head(title, desc, url, img, f"{s['title']} — cover art", jsonld)}
+    return f"""{head(title, desc, url, img, f"{s['title']} — cover art", [jsonld, crumbs])}
 <body class="lyr-body" data-view="reading">
 
 {HEADER}
@@ -281,9 +288,9 @@ def song_page(i, s):
       {picture(s['cover'], f"{s['title']} cover art", "lyr-hero__art", eager=True)}
       <div class="lyr-hero__text">
         <a class="lyr-back" href="/lyrics/">← All lyrics</a>
-        <span class="eyebrow">Lyrics · {e(meta_line(s))}</span>
-        <h1>{e(s['title'])}</h1>
-        <p class="lyr-sub">{e(s['sub'])}</p>
+        <span class="eyebrow">{e(meta_line(s))}</span>
+        <h1>{e(s['title'])} <span class="lyr-h1-tag">lyrics</span></h1>
+        <p class="lyr-sub">by Emily Adade Boateng · {e(s['sub'])}</p>
       </div>
     </div>
   </div>
