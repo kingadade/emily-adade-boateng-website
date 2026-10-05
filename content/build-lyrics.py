@@ -243,10 +243,7 @@ def song_page(i, s):
            "byArtist": {"@type": "MusicGroup", "name": "Emily Adade Boateng", "url": SITE + "/"}}
     if s["release"] != "Single":
         rec["inAlbum"] = {"@type": "MusicAlbum", "name": s["release"]}
-    if s.get("video"):
-        rec["video"] = {"@type": "VideoObject", "name": f"{s['title']} — official video",
-                        "embedUrl": f"https://www.youtube-nocookie.com/embed/{s['video']}",
-                        "thumbnailUrl": f"https://i.ytimg.com/vi/{s['video']}/maxresdefault.jpg"}
+    # No VideoObject: Google requires an uploadDate we don't have, and flags it invalid.
     jsonld = {
         "@context": "https://schema.org", "@type": "MusicComposition",
         "name": s["title"], "url": url,
