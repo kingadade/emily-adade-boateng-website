@@ -16,7 +16,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 SITE = "https://www.emilyadadeboateng.com"
 CSS_V = "2"        # bump when assets/css/lyrics.css changes
-SITE_CSS_V = "13"  # keep in step with index.html
+SITE_CSS_V = "14"  # keep in step with index.html
 
 data = json.loads((ROOT / "content" / "lyrics.json").read_text(encoding="utf-8"))
 songs = data["songs"]
