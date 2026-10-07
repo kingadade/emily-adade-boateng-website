@@ -8,6 +8,9 @@ Redirect 301 /stream-music /#listen
 Redirect 301 /blog-post1 /#story
 Redirect 301 /journey /#story
 Redirect 301 /emily-adade-boateng-the-rising-star /#story
+Redirect 301 /music /#music
+Redirect 301 /download /#listen
+RedirectMatch 301 ^/stream-your-favorite-music /#listen
 
 # --- Force HTTPS + canonical www --------------------------------------------
 RewriteEngine On
