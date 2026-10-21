@@ -238,11 +238,11 @@ def song_page(i, s):
     aka = s.get("aka")
     name = f"{s['title']} ({aka})" if aka else s["title"]
     title = f"{name} Lyrics — Emily Adade Boateng"
-    desc = f"{name} lyrics by Emily Adade Boateng, from {('the ' + s['year'] + ' single') if s['release'] == 'Single' else ('the album ' + s['release'] + ' (' + s['year'] + ')')}. “{first_line(s)}…”"
+    desc = f"{name} lyrics by Emily Adade Boateng, from {('the ' + s['year'] + ' single') if s['release'] == 'Single' else ((('the EP ' + s['release'][:-3]) if s['release'].endswith(' EP') else ('the album ' + s['release'])) + ' (' + s['year'] + ')')}. “{first_line(s)}…”"
     rec = {"@type": "MusicRecording", "name": s["title"],
            "byArtist": {"@type": "MusicGroup", "name": "Emily Adade Boateng", "url": SITE + "/"}}
     if s["release"] != "Single":
-        rec["inAlbum"] = {"@type": "MusicAlbum", "name": s["release"]}
+        rec["inAlbum"] = {"@type": "MusicAlbum", "name": s["release"][:-3] if s["release"].endswith(" EP") else s["release"]}
     # No VideoObject: Google requires an uploadDate we don't have, and flags it invalid.
     jsonld = {
         "@context": "https://schema.org", "@type": "MusicComposition",

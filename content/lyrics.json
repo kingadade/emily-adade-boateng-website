@@ -2,6 +2,318 @@
  "_readme": "Source for the /lyrics/ pages. Edit here, then run: python3 content/build-lyrics.py. Lines are strings, or {\"t\": line, \"note\": small label}. A section with \"repeat\": true prints only its label. \"x2\": true shows a ×2 mark. \"akan\": true on a song shows the translation-coming note. Song order here is the order on the site. Optional \"hook\" overrides the line quoted on the index page. Optional \"aka\" is another name people search for; it goes into the page title.",
  "songs": [
   {
+   "slug": "sunsum-kronkron",
+   "title": "Sunsum Kronkron",
+   "sub": "Holy Spirit, come",
+   "akan": true,
+   "release": "On My Way EP",
+   "year": "October 2026",
+   "cover": "cover-on-my-way",
+   "sections": [
+    {
+     "label": "Verse",
+     "lines": [
+      "M’agyenkwa ne m’aaban den den",
+      "Bra na begye w’ayeyi",
+      "Aheni mu hene wo so",
+      "You reign, you reign forevermore"
+     ],
+     "x2": true,
+     "lang": "ak"
+    },
+    {
+     "label": "Chorus",
+     "lines": [
+      "Sunsum Kronkron, bra yen mfinimfini",
+      "Sunsum Kronkron, bra, yere twen wo",
+      "Di hen, di hen daada",
+      "Di hen, di hen daada",
+      "Di hen, di hen, yere twen wo"
+     ],
+     "lang": "ak"
+    }
+   ]
+  },
+  {
+   "slug": "calling",
+   "title": "Calling",
+   "sub": "He’s calling out your name",
+   "release": "On My Way EP",
+   "year": "October 2026",
+   "cover": "cover-on-my-way",
+   "sections": [
+    {
+     "label": "Verse 1",
+     "lines": [
+      "Feel the heat rushing through your veins",
+      "God in heaven understands your pain",
+      "What can’t He do?",
+      "Have you asked yourself?",
+      "Well, listen closer — He’s calling out your name"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "lines": [
+      "He is calling you, calling you, calling you",
+      "Calling out your name"
+     ],
+     "x2": true
+    },
+    {
+     "label": "Verse 2",
+     "lines": [
+      "You’re drowned deep into the depths of the sea",
+      "Nowhere to run, nowhere to hide",
+      "But looking up to Him",
+      "Your garment is filled with guilt",
+      "What can you do now?",
+      "Well, listen closer — He’s calling out your name"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    },
+    {
+     "label": "Bridge",
+     "lines": [
+      "You’re hunted by the enemy",
+      "Well, look inside your family",
+      "And look above, the heavenly",
+      {
+       "t": "He’s calling you, ooo",
+       "note": "×4"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "i-believe",
+   "title": "I Believe",
+   "aka": "I Believe in You",
+   "sub": "feat. Psalmist",
+   "release": "On My Way EP",
+   "year": "October 2026",
+   "cover": "cover-on-my-way",
+   "sections": [
+    {
+     "label": "Verse 1",
+     "lines": [
+      "In the storms, in the trials",
+      "I was waiting patiently, till You came",
+      "Every pain, every struggle",
+      "I think it was worth it, till You came"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "lines": [
+      "And I believe in You, ’cause You’re true",
+      "I keep my faith in Jesus Christ",
+      "’Cause He saved me from my pride"
+     ],
+     "x2": true
+    },
+    {
+     "label": "Verse 2",
+     "lines": [
+      "Watching me till I grew up",
+      "Like a star that flickers",
+      "You came through in every aspect of my life",
+      "And now I’m grateful",
+      "Yes, now I’m grateful"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    },
+    {
+     "label": "Call and response",
+     "lines": [
+      {
+       "t": "Just believe it",
+       "note": "Just believe it"
+      },
+      {
+       "t": "And receive it",
+       "note": "And receive it"
+      }
+     ],
+     "x2": true
+    },
+    {
+     "label": "Duet · key change",
+     "lines": [
+      "He would do it",
+      "He would do it",
+      "He would come through"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    }
+   ]
+  },
+  {
+   "slug": "lamb-of-god",
+   "title": "Lamb of God",
+   "sub": "Lord, You reign",
+   "release": "On My Way EP",
+   "year": "October 2026",
+   "cover": "cover-on-my-way",
+   "sections": [
+    {
+     "label": "Intro",
+     "lines": [
+      "Lamb of God",
+      "Lamb of God",
+      "Lord, You reign",
+      "Lord, You reign",
+      "You are God"
+     ]
+    },
+    {
+     "label": "Verse",
+     "lines": [
+      {
+       "t": "Help me sing Lamb of God, let’s go",
+       "note": "backing vocals"
+      },
+      "Lamb of God",
+      "Lamb of God",
+      "Lord, You reign",
+      "Lord, You reign",
+      "You are God"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "lines": [
+      "Lamb of God, Lord, You reign",
+      "Lamb of God, Lord, You reign",
+      "You are God",
+      "You are God",
+      "Lamb of God, Lord, You reign",
+      "Lamb of God, Lord, You reign",
+      "You are God",
+      "You are God — sing it",
+      "You are God"
+     ]
+    },
+    {
+     "label": "Bridge",
+     "lines": [
+      "Lamb of God",
+      "Lamb of God",
+      "Holy One",
+      "Holy One",
+      "You are God",
+      {
+       "t": "Help me sing Lamb of God, let’s go",
+       "note": "backing vocals"
+      },
+      "Lamb of God (Lamb of God, yeah)",
+      "Lamb of God",
+      "Holy One",
+      "Holy One",
+      "You are God"
+     ]
+    },
+    {
+     "label": "Outro",
+     "lines": [
+      "Lamb of God, Lord, You reign",
+      "Lamb of God, Lord, You reign",
+      "Lamb of God, Lord, You reign",
+      "Lamb of God, Lord, You reign",
+      "You are God",
+      "You are God",
+      "Lamb of God, Lord, You reign",
+      "Lamb of God, Lord, You reign",
+      "You are God",
+      "You are God — sing it",
+      "You are God",
+      "You are God",
+      "You are God"
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "on-my-way",
+   "title": "On My Way",
+   "sub": "Title track · on my way to heaven",
+   "release": "On My Way EP",
+   "year": "October 2026",
+   "cover": "cover-on-my-way",
+   "sections": [
+    {
+     "label": "Verse 1",
+     "lines": [
+      "Jesus, lead me all along the way",
+      "Though the storms, though the storms may make me go astray",
+      "I will not drift away, I know my aim",
+      "I reach that blissful shore",
+      "I will not drift away, ’cause I know my aim",
+      "I reach that blissful shore"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "lines": [
+      "On my way",
+      "On my way",
+      "To heaven",
+      "On my way",
+      "On my way",
+      "On my way",
+      "To heaven"
+     ],
+     "x2": true
+    },
+    {
+     "label": "Verse 2",
+     "lines": [
+      "I will lift my voice as I pray",
+      "For His love never fades to grey",
+      "No matter what the devil says",
+      "I’ll press on and on, ’cause I know my aim"
+     ]
+    },
+    {
+     "label": "Bridge",
+     "lines": [
+      "From the east to the west, on my way",
+      "From the north to the south, on my way",
+      "On my way to heaven, on my way",
+      "Come and follow me, on my way",
+      "Leave the world behind, on my way",
+      "On to heaven, on my way"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    },
+    {
+     "label": "Rap",
+     "lines": [
+      "On my way to heaven, Jesus leads me all the way",
+      "Though the storms may make me go astray",
+      "I will not, I will not drift away"
+     ]
+    },
+    {
+     "label": "Chorus",
+     "repeat": true
+    }
+   ]
+  },
+  {
    "slug": "defender",
    "title": "Defender",
    "release": "Single",
