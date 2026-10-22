@@ -115,4 +115,10 @@
     <priority>0.6</priority>
   </url>
   <!-- lyrics:end -->
+  <url>
+    <loc>https://www.emilyadadeboateng.com/on-my-way/</loc>
+    <lastmod>2026-10-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
 </urlset>

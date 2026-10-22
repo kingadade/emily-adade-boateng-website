@@ -12,6 +12,10 @@ Redirect 301 /music /#music
 Redirect 301 /download /#listen
 RedirectMatch 301 ^/stream-your- /#listen
 
+# --- Short links ------------------------------------------------------------
+# Said from the stage and printed under the QR code: emilyadadeboateng.com/ep
+RedirectMatch 302 ^/ep/?$ /on-my-way/
+
 # --- Force HTTPS + canonical www --------------------------------------------
 RewriteEngine On
 RewriteCond %{HTTPS} off

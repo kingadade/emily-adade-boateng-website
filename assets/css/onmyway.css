@@ -1,0 +1,105 @@
+/* ==========================================================================
+   On My Way EP smart link (/on-my-way/, short link /ep). Loaded after
+   site.css, which supplies the tokens and fonts. One narrow column, built
+   for a phone that arrived from a QR code, a WhatsApp status or a bio link.
+   ========================================================================== */
+
+.omw-body {
+  background:
+    radial-gradient(120% 60% at 50% 0%, var(--crimson-lo) 0%, transparent 70%),
+    var(--ink);
+  color: var(--cream);
+  min-height: 100vh;
+}
+
+.omw { padding: clamp(1.5rem, 5vw, 3rem) 16px 3rem; }
+.omw__inner {
+  max-width: 440px; margin-inline: auto;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
+}
+
+.omw__brand {
+  display: inline-flex; align-items: center; gap: .55rem;
+  color: var(--cream-dim); text-decoration: none; font-size: .9rem; font-weight: 600;
+  letter-spacing: .02em; margin-bottom: 1.75rem;
+}
+.omw__brand:hover { color: var(--cream); }
+
+.omw__cover img {
+  width: min(80vw, 360px); height: auto; aspect-ratio: 1; object-fit: cover;
+  border-radius: var(--r-md);
+  box-shadow: 0 30px 60px -20px rgba(0,0,0,.7), 0 0 0 1px rgba(246,239,228,.08);
+}
+
+.omw__eyebrow {
+  margin-top: 1.75rem;
+  font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--gold-lift);
+}
+.omw h1 { font-size: clamp(2.6rem, 11vw, 3.6rem); margin-top: .35rem; line-height: 1; }
+.omw__sub { margin-top: .75rem; color: var(--cream-dim); font-size: 1rem; max-width: 30ch; }
+
+/* --- platform buttons ------------------------------------------------- */
+.omw__links { width: 100%; display: flex; flex-direction: column; gap: .6rem; margin-top: 1.75rem; }
+.omw__link {
+  display: flex; align-items: center; gap: .9rem;
+  min-height: 56px; padding: 0 1.1rem;
+  border-radius: var(--r-sm);
+  background: var(--ink-3); border: 1px solid rgba(246,239,228,.1);
+  color: var(--cream); text-decoration: none; font-weight: 600; font-size: 1.02rem;
+  transition: background .2s var(--ease), border-color .2s var(--ease), transform .2s var(--ease);
+}
+.omw__link svg { width: 24px; height: 24px; flex: none; color: var(--gold); }
+.omw__link span:first-of-type { flex: 1; text-align: left; }
+.omw__go { color: var(--cream-mute); transition: transform .2s var(--ease); }
+.omw__link:hover { background: var(--mahogany); border-color: rgba(217,164,65,.45); }
+.omw__link:hover .omw__go { transform: translateX(3px); color: var(--gold-lift); }
+.omw__link:active { transform: scale(.98); }
+/* Spotify first and gold: the one most people will tap. */
+.omw__link:first-child { background: var(--gold); border-color: var(--gold); color: #221507; }
+.omw__link:first-child svg, .omw__link:first-child .omw__go { color: #221507; }
+.omw__link:first-child:hover { background: var(--gold-lift); }
+
+/* --- share ------------------------------------------------------------ */
+.omw__share { display: flex; gap: .6rem; width: 100%; margin-top: 1rem; }
+.omw__wa, .omw__copy {
+  flex: 1; min-height: 48px; display: inline-flex; align-items: center; justify-content: center;
+  padding: 0 .9rem; border-radius: 100px; font: inherit; font-size: .92rem; font-weight: 600;
+  cursor: pointer; text-decoration: none; white-space: nowrap;
+}
+.omw__wa { background: #1f7a45; color: #fff; border: 0; }
+.omw__wa:hover { background: #22894d; }
+.omw__copy { background: transparent; color: var(--cream); border: 1px solid rgba(246,239,228,.25); overflow-wrap: anywhere; }
+.omw__copy:hover { border-color: var(--cream-dim); }
+
+/* --- tracklist -------------------------------------------------------- */
+.omw__tracks { width: 100%; margin-top: 2.5rem; text-align: left; }
+.omw__tracks h2 {
+  font-family: Inter, system-ui, sans-serif;
+  font-size: .78rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--cream-mute); margin-bottom: .6rem;
+}
+.omw__tracks ol { list-style: none; padding: 0; counter-reset: t; border-top: 1px solid rgba(246,239,228,.1); }
+.omw__tracks li { counter-increment: t; border-bottom: 1px solid rgba(246,239,228,.1); }
+.omw__tracks a {
+  display: flex; align-items: center; gap: .9rem; min-height: 52px;
+  color: var(--cream); text-decoration: none;
+}
+.omw__tracks a::before { content: counter(t); width: 1.2rem; color: var(--cream-mute); font-variant-numeric: tabular-nums; }
+.omw__tracks a span { flex: 1; }
+.omw__tracks em { font-style: normal; color: var(--cream-mute); font-size: .9em; }
+.omw__tracks small { font-size: .78rem; color: var(--gold); }
+.omw__tracks a:hover span { color: var(--gold-lift); }
+.omw__note { margin-top: .9rem; font-size: .88rem; color: var(--cream-mute); }
+
+.omw__foot {
+  display: flex; gap: 1.5rem; justify-content: center; margin-top: 2.5rem; font-size: .88rem;
+}
+.omw__foot a { color: var(--cream-dim); }
+.omw__foot a:hover { color: var(--cream); }
+
+.omw :focus-visible { outline: 2px solid var(--gold-lift); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .omw__link, .omw__go { transition: none; }
+}
