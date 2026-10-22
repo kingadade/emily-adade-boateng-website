@@ -1,7 +1,8 @@
 User-agent: *
 Allow: /
+Disallow: /stats/
 
-# Block nothing — this is a single public page.
+# Only the private visitor dashboard is off-limits.
 # Old builder URLs 301-redirect via .htaccess.
 
 Sitemap: https://www.emilyadadeboateng.com/sitemap.xml

@@ -164,7 +164,8 @@ SCRIPT = """<script>
     btns.forEach(b => b.addEventListener('click', () => set(b.dataset.view, true)));
     bar.hidden = false;
   })();
-</script>"""
+</script>
+<script src="/assets/js/stats.js?v=1" defer></script>"""
 
 
 def head(title, desc, url, image, image_alt, jsonld):

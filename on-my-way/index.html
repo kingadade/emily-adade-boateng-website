@@ -93,7 +93,7 @@
     </nav>
 
     <div class="omw__share">
-      <a class="omw__wa" id="shareWa" href="https://wa.me/?text=On%20My%20Way%20%E2%80%94%20the%20new%20EP%20by%20Emily%20Adade%20Boateng.%20Stream%20it%20here%3A%20https%3A%2F%2Fwww.emilyadadeboateng.com%2Fon-my-way%2F" target="_blank" rel="noopener">WhatsApp</a>
+      <a class="omw__wa" id="shareWa" data-track="share-whatsapp" href="https://wa.me/?text=On%20My%20Way%20%E2%80%94%20the%20new%20EP%20by%20Emily%20Adade%20Boateng.%20Stream%20it%20here%3A%20https%3A%2F%2Fwww.emilyadadeboateng.com%2Fon-my-way%2F" target="_blank" rel="noopener">WhatsApp</a>
       <button class="omw__copy" id="shareBtn" type="button">Copy link</button>
     </div>
 
@@ -125,6 +125,7 @@
   (() => {
     const btn = document.getElementById('shareBtn');
     const url = 'https://www.emilyadadeboateng.com/on-my-way/';
+    btn.dataset.track = navigator.share ? 'share-native' : 'share-copy';
     if (navigator.share) btn.textContent = 'Share';
     btn.addEventListener('click', async () => {
       if (navigator.share) {
@@ -136,5 +137,6 @@
     });
   })();
 </script>
+<script src="/assets/js/stats.js?v=1" defer></script>
 </body>
 </html>

@@ -9,3 +9,7 @@ deploy.sh
 *.zip
 .DS_Store
 .claude/
+
+# Visitor counter: live data and the dashboard password
+.stats-data/
+.stats-password

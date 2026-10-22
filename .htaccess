@@ -14,7 +14,7 @@ RedirectMatch 301 ^/stream-your- /#listen
 
 # --- Short links ------------------------------------------------------------
 # Said from the stage and printed under the QR code: emilyadadeboateng.com/ep
-RedirectMatch 302 ^/ep/?$ /on-my-way/
+RedirectMatch 302 ^/ep/?$ /on-my-way/?src=ep
 
 # --- Force HTTPS + canonical www --------------------------------------------
 RewriteEngine On
@@ -26,6 +26,9 @@ RewriteRule ^(.*)$ https://www.emilyadadeboateng.com/$1 [L,R=301]
 
 # --- Working files that ship with the Git checkout but aren't site content ---
 RedirectMatch 404 ^/content/
+# Visitor-counter data, if it has to live inside the web root.
+RedirectMatch 404 ^/\.stats-data
+DirectoryIndex index.html index.php
 
 # --- Caching ----------------------------------------------------------------
 # Assets are versioned or renamed when they change, so they cache hard.
