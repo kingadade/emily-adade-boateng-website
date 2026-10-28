@@ -1,5 +1,5 @@
 {
- "_readme": "Source for the /lyrics/ pages. Edit here, then run: python3 content/build-lyrics.py. Lines are strings, or {\"t\": line, \"note\": small label}. A section with \"repeat\": true prints only its label. \"x2\": true shows a ×2 mark. \"akan\": true on a song shows the translation-coming note. Song order here is the order on the site. Optional \"hook\" overrides the line quoted on the index page. Optional \"aka\" is another name people search for; it goes into the page title.",
+ "_readme": "Source for the /lyrics/ pages. Edit here, then run: python3 content/build-lyrics.py. Lines are strings, or {\"t\": line, \"note\": small label}. A section with \"repeat\": true prints only its label. \"x2\": true shows a ×2 mark. \"akan\": true on a song shows the translation-coming note. Song order here is the order on the site. Optional \"hook\" overrides the line quoted on the index page. Optional \"aka\" is another name people search for; it goes into the page title. Optional \"releasePage\" adds a Stream button to the Listen card.",
  "songs": [
   {
    "slug": "sunsum-kronkron",
@@ -32,7 +32,8 @@
      ],
      "lang": "ak"
     }
-   ]
+   ],
+   "releasePage": "/on-my-way/"
   },
   {
    "slug": "calling",
@@ -87,7 +88,8 @@
       }
      ]
     }
-   ]
+   ],
+   "releasePage": "/on-my-way/"
   },
   {
    "slug": "i-believe",
@@ -156,7 +158,8 @@
      "label": "Chorus",
      "repeat": true
     }
-   ]
+   ],
+   "releasePage": "/on-my-way/"
   },
   {
    "slug": "lamb-of-god",
@@ -241,7 +244,8 @@
       "You are God"
      ]
     }
-   ]
+   ],
+   "releasePage": "/on-my-way/"
   },
   {
    "slug": "on-my-way",
@@ -311,7 +315,8 @@
      "label": "Chorus",
      "repeat": true
     }
-   ]
+   ],
+   "releasePage": "/on-my-way/"
   },
   {
    "slug": "defender",

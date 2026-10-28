@@ -272,8 +272,11 @@ def song_page(i, s):
     if s.get("akan"):
         notice = '\n      <p class="lyr-notice">Sung in Akan. An English translation is coming — Emily and the family are writing it line by line.</p>'
     watch = ""
+    if s.get("releasePage"):
+        watch += f'\n          <a class="btn" href="{s["releasePage"]}">Stream the EP everywhere</a>'
     if s.get("video"):
-        watch = f'\n          <a class="btn" href="https://www.youtube.com/watch?v={s["video"]}" target="_blank" rel="noopener">Watch the official video</a>'
+        cls = "btn btn--ghost" if watch else "btn"
+        watch += f'\n          <a class="{cls}" href="https://www.youtube.com/watch?v={s["video"]}" target="_blank" rel="noopener">Watch the official video</a>'
 
     return f"""{head(title, desc, url, img, f"{s['title']} — cover art", [jsonld, crumbs])}
 <body class="lyr-body" data-view="reading">
