@@ -13,13 +13,57 @@ from datetime import date
 from html import escape
 from pathlib import Path
 
+from site_parts import FOOTER, ICONS, NAV_JS, SITE, SITE_CSS_V, header
+
 ROOT = Path(__file__).resolve().parent.parent
-SITE = "https://www.emilyadadeboateng.com"
-CSS_V = "2"        # bump when assets/css/lyrics.css changes
-SITE_CSS_V = "14"  # keep in step with index.html
+CSS_V = "3"        # bump when assets/css/lyrics.css changes
 
 data = json.loads((ROOT / "content" / "lyrics.json").read_text(encoding="utf-8"))
 songs = data["songs"]
+
+# The release each song belongs to, on every store (checked 22 Nov 2026).
+# Keyed by the song's "release", or by its slug for a single.
+# Values: Spotify album id, Apple Music path, YouTube Music playlist id,
+# Boomplay album id, Audiomack path.
+STORES = {
+    "On My Way EP": ("0nQCHCSYGdoA7mPjLd4s7w", "on-my-way-ep/6820793600", "OLAK5uy_kWZs2e6I-bOljtSbbK9fIg8KX1_XMidw4",
+                     "EQVoFJXLfX85WY87kVU5KEu3", "emilyadade/album/on-my-way"),
+    "Nyame Prɛkopɛ": ("1z0zzwwpvwiNJ9J3ilv8rL", "nyame-pr%C9%9Bkop%C9%9B/1862039526", "OLAK5uy_mXtCaQXICwDZ2tIvnujIkTvsHqWoLIuEU",
+                      "EQWX0gvAMos4YQPdZTZO-5bK", "emilyadade/album/nyame-prekope"),
+    "Miracle Working God": ("1lkyyStEdkiuli4FEUPpP6", "miracle-working-god/1820140605", "OLAK5uy_k2CBJFJKdk2H8Vn3dEX2WDI_Tz-GucNsA",
+                            "EQUkdXpc10-FZo-V4apO-dyc", "emilyadade/album/miracle-working-god"),
+    "King of Glory": ("16MdiLe7zG8T2OGCrmBe6P", "king-of-glory/1756639303", "OLAK5uy_mfdIidEg5b7x8gWhvI-XcrzOPGJx_gZjk",
+                      "EQU9GI6WnTHY-Dx2uceRC8GA", "emilyadade/album/king-of-glory"),
+    "Aseda EP": ("6W8DQtYXuHJEnigbdHZkeo", "aseda-ep/1777214979", "OLAK5uy_nSmInmeTDBpDzKsssJMLMptZ6-F_R5kB8",
+                 "EQVnuwU6OZQgK-r-DGW8w6cN", "emilyadade/album/aseda"),
+    "defender": ("4XTpzAGIGcVGCMWWrAfo3B", "defender-single/6786172104", "OLAK5uy_lRxyGlTbZPS0q5fErZ-MMSZT-w0hY_sXo",
+                 "EQXtQCTlWjkCulRhAtUqN8Pw", "emilyadade/song/defender"),
+    "glory": ("5Jmyarma5MGjElxlv3dlc4", "glory-single/1864296640", "OLAK5uy_k2vy9fRiAtwws3GwfbfWvnU2NbJPljA-o",
+              "EQWkVr3JcXYmLRAtxHGQWGWx", "emilyadade/song/glory"),
+}
+
+
+def store_links(s):
+    """Listen-card links: the song's own release where known, else the artist pages."""
+    key = s["slug"] if s["release"] == "Single" else s["release"]
+    if key in STORES:
+        sp, ap, yt, bp, am = STORES[key]
+        what = "This single on" if s["release"] == "Single" else f"{s['release']} on"
+        links = [("spotify", "Spotify", f"https://open.spotify.com/album/{sp}"),
+                 ("apple", "Apple Music", f"https://music.apple.com/album/{ap}"),
+                 ("youtube-music", "YouTube Music", f"https://music.youtube.com/playlist?list={yt}"),
+                 ("boomplay", "Boomplay", f"https://www.boomplay.com/albums/{bp}"),
+                 ("audiomack", "Audiomack", f"https://audiomack.com/{am}")]
+    else:
+        what = "Emily on"
+        links = [("spotify", "Spotify", "https://open.spotify.com/artist/1znF2dfvSmw74C5HMTlSIS"),
+                 ("apple", "Apple Music", "https://music.apple.com/artist/emily-adade-boateng/1755930781"),
+                 ("youtube", "YouTube", "https://www.youtube.com/@EmilyAdadeBoateng"),
+                 ("boomplay", "Boomplay", "https://www.boomplay.com/artists/EQJGmN_DTD4Iiv9CwY_0a1t4"),
+                 ("audiomack", "Audiomack", "https://audiomack.com/emilyadade")]
+    items = "\n            ".join(
+        f'<a href="{u}" data-platform="{k}" target="_blank" rel="noopener">{n}</a>' for k, n, u in links)
+    return f'<p class="lyr-from">{escape(what)}</p>\n          <div class="lyr-stream">\n            {items}\n          </div>'
 
 
 def e(s):
@@ -61,94 +105,10 @@ def first_line(song):
     return ""
 
 
-HEADER = """<a class="skip" href="#lyrics">Skip to lyrics</a>
-<header class="site-header">
-  <div class="wrap site-header__inner">
-    <a class="brand" href="/">
-      <img src="/assets/img/logo-mark.png" alt="" width="34" height="34">
-      <span class="brand__name">Emily Adade Boateng
-        <span class="brand__sub">Gospel Ministry</span>
-      </span>
-    </a>
-
-    <nav class="nav" id="nav" aria-label="Primary">
-      <a href="/#listen">Listen</a>
-      <a href="/#music">Music</a>
-      <a href="/#watch">Watch</a>
-      <a href="/#awards">Awards</a>
-      <a href="/#story">Story</a>
-      <a href="/#ministry">Ministry</a>
-      <a href="/#events">Events</a>
-      <a href="/#book">Book Emily</a>
-    </nav>
-
-    <a class="btn header-cta" href="/#book">Book Emily</a>
-
-    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="nav" aria-label="Open menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round">
-        <path d="M4 7h16M4 12h16M4 17h16"/>
-      </svg>
-    </button>
-  </div>
-</header>"""
-
-FOOTER = """<footer class="site-footer footer">
-  <div class="wrap">
-    <div class="footer__grid">
-      <div class="footer__brand">
-        <a class="brand" href="/">
-          <img src="/assets/img/logo-mark.png" alt="" width="34" height="34">
-          <span class="brand__name">Emily Adade Boateng<span class="brand__sub">Gospel Ministry</span></span>
-        </a>
-        <p>Ghanaian gospel singer. Praise, worship and outreach — in prisons, on campuses, and in orphanages.</p>
-      </div>
-      <div>
-        <h4>Music</h4>
-        <ul>
-          <li><a href="/#listen">Listen</a></li>
-          <li><a href="/#music">Discography</a></li>
-          <li><a href="/lyrics/">Lyrics</a></li>
-          <li><a href="/#watch">Videos</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>About</h4>
-        <ul>
-          <li><a href="/#story">Her story</a></li>
-          <li><a href="/#awards">Awards</a></li>
-          <li><a href="/#ministry">Ministry</a></li>
-          <li><a href="/#events">Events</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Bookings</h4>
-        <ul>
-          <li><a href="https://wa.me/233244239155" target="_blank" rel="noopener">WhatsApp enquiry</a></li>
-          <li><a href="tel:+233244239155">+233 24 423 9155</a></li>
-          <li><a href="mailto:abrahamadade@techspringgh.com">abrahamadade@techspringgh.com</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer__bar">
-      <span>&copy; <span id="year">2026</span> Emily Adade Boateng. All rights reserved.</span>
-      <span>Ghana</span>
-    </div>
-  </div>
-</footer>"""
+HEADER = '<a class="skip" href="#lyrics">Skip to lyrics</a>\n' + header("lyrics")
 
 SCRIPT = """<script>
-  document.getElementById('year').textContent = new Date().getFullYear();
-  (() => {
-    const nav = document.getElementById('nav');
-    const toggle = document.getElementById('navToggle');
-    toggle.addEventListener('click', () => {
-      const open = nav.dataset.open === 'true';
-      nav.dataset.open = String(!open);
-      toggle.setAttribute('aria-expanded', String(!open));
-      toggle.setAttribute('aria-label', open ? 'Open menu' : 'Close menu');
-    });
-  })();
-  // Reading / Projector view. The choice is remembered on this device only.
+""" + NAV_JS + """  // Reading / Projector view. The choice is remembered on this device only.
   (() => {
     const bar = document.getElementById('viewToggle');
     if (!bar) return;
@@ -185,7 +145,7 @@ def head(title, desc, url, image, image_alt, jsonld):
 <meta property="og:image" content="{image}">
 <meta property="og:image:alt" content="{e(image_alt)}">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/assets/img/logo-mark.png">
+{ICONS}
 <meta name="theme-color" content="#7d1219">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -276,7 +236,10 @@ def song_page(i, s):
         watch += f'\n          <a class="btn" href="{s["releasePage"]}">Stream the EP everywhere</a>'
     if s.get("video"):
         cls = "btn btn--ghost" if watch else "btn"
-        watch += f'\n          <a class="{cls}" href="https://www.youtube.com/watch?v={s["video"]}" target="_blank" rel="noopener">Watch the official video</a>'
+        watch += f'\n          <a class="{cls}" href="https://www.youtube.com/watch?v={s["video"]}" target="_blank" rel="noopener" data-track="video-{s["video"]}">Watch the official video</a>'
+    if s.get("live"):
+        cls = "btn btn--ghost" if watch else "btn"
+        watch += f'\n          <a class="{cls}" href="https://www.youtube.com/watch?v={s["live"]}" target="_blank" rel="noopener" data-track="video-{s["live"]}">Watch it sung live</a>'
 
     return f"""{head(title, desc, url, img, f"{s['title']} — cover art", [jsonld, crumbs])}
 <body class="lyr-body" data-view="reading">
@@ -319,11 +282,7 @@ def song_page(i, s):
         </nav>
         <div class="lyr-card lyr-card--dark">
           <h2 class="lyr-card__h">Listen</h2>{watch}
-          <div class="lyr-stream">
-            <a href="https://open.spotify.com/artist/1znF2dfvSmw74C5HMTlSIS" target="_blank" rel="noopener">Spotify</a>
-            <a href="https://www.youtube.com/@EmilyAdadeBoateng" target="_blank" rel="noopener">YouTube</a>
-            <a href="https://audiomack.com/search?q=emily%20adade%20boateng" target="_blank" rel="noopener">Audiomack</a>
-          </div>
+          {store_links(s)}
         </div>
         <div class="lyr-card">
           <h2 class="lyr-card__h">For worship teams</h2>
@@ -364,7 +323,7 @@ def index_page():
                 f'<span class="lyr-tile__l">“{e(first_line(s))}”</span></span></a></li>'
             )
         groups.append(
-            f'    <section class="lyr-group">\n      <h2 class="lyr-group__h">{e(key)}</h2>\n'
+            f'    <section class="lyr-group" id="{re.sub(r"[^a-z0-9]+", "-", key.lower().replace("ɛ", "e")).strip("-")}">\n      <h2 class="lyr-group__h">{e(key)}</h2>\n'
             f'      <ul class="lyr-tiles">\n        ' + "\n        ".join(cards) + "\n      </ul>\n    </section>"
         )
     jsonld = {"@context": "https://schema.org", "@type": "CollectionPage",

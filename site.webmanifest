@@ -1,0 +1,13 @@
+{
+  "name": "Emily Adade Boateng",
+  "short_name": "Emily Adade",
+  "description": "Ghanaian gospel singer. Music, videos, lyrics and bookings.",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#17100c",
+  "theme_color": "#17100c",
+  "icons": [
+    { "src": "/assets/img/favicon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "/assets/img/favicon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}

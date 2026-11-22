@@ -185,7 +185,7 @@ a:hover { text-decoration-color: var(--gold); }
   min-height: 68px;
 }
 .brand { display: flex; align-items: center; gap: .7rem; text-decoration: none; flex: none; }
-.brand img { width: 34px; height: 34px; border-radius: 8px; }
+.brand img { width: auto; height: 30px; }
 .brand__name {
   font-family: "Fraunces", serif; font-size: 1.02rem; font-weight: 600;
   color: var(--cream); letter-spacing: -.01em; line-height: 1.1;
@@ -210,8 +210,10 @@ a:hover { text-decoration-color: var(--gold); }
   transition: transform .3s var(--ease);
 }
 .nav a:hover { color: var(--cream); }
-.nav a:hover::after, .nav a[aria-current="page"]::after { transform: scaleX(1); transform-origin: left; }
-.nav a[aria-current="page"] { color: var(--cream); }
+.nav a:hover::after, .nav a[aria-current]::after { transform: scaleX(1); transform-origin: left; }
+.nav a[aria-current] { color: var(--cream); }
+/* The gold button already says "Book Emily" on wide screens. */
+.nav .nav__book { display: none; }
 
 .header-cta { flex: none; }
 
@@ -238,6 +240,8 @@ a:hover { text-decoration-color: var(--gold); }
   }
   .nav[data-open="true"] { transform: translateX(0); }
   .nav a { font-size: 1.35rem; font-family: "Fraunces", serif; color: var(--cream); }
+  .nav .nav__book { display: block; color: var(--gold-lift); }
+  .nav { gap: 1.2rem; overflow-y: auto; }
 }
 
 /* --- hero -------------------------------------------------------------- */
@@ -265,8 +269,8 @@ a:hover { text-decoration-color: var(--gold); }
   .hero__inner { grid-template-columns: 1.06fr .94fr; }
 }
 
-.hero h1 { margin-block: 1.4rem 1.6rem; }
-.hero h1 em { font-style: normal; color: var(--gold-lift); }
+.hero h1, .hero .slide-title { margin-block: 1.4rem 1.6rem; }
+.hero h1 em, .hero .slide-title em { color: var(--gold-lift); }
 .hero .lede { max-width: 36ch; }
 .hero .btn-row { margin-top: 2.25rem; }
 
@@ -340,6 +344,10 @@ a:hover { text-decoration-color: var(--gold); }
   .slider__arrow--prev { left: .35rem; }
   .slider__arrow--next { right: .35rem; }
 }
+@media (min-width: 621px) and (max-width: 1340px) {
+  /* ...and move the slides in, so an arrow never sits on top of the text. */
+  .slides { padding-inline: 3.6rem; }
+}
 @media (max-width: 620px) {
   /* Arrows drop onto the same row as the dots: prev at the far left, next at
      the far right, dots centred between them. bottom:0 lines them up with the
@@ -350,11 +358,24 @@ a:hover { text-decoration-color: var(--gold); }
   .slider__arrow--next { right: 0; left: auto; }
 }
 
-.slider__dots {
+.slider__controls {
   position: relative; z-index: 3;
-  display: flex; justify-content: center; align-items: center; gap: .55rem;
+  display: flex; justify-content: center; align-items: center; gap: 1rem;
   margin-top: clamp(2.25rem, 4vw, 3.25rem);
 }
+.slider__dots { display: flex; justify-content: center; align-items: center; gap: .55rem; }
+/* Pause/play for the auto-rotating hero (WCAG 2.2.2). */
+.slider__pause {
+  width: 30px; height: 30px; padding: 0; flex: none;
+  display: grid; place-items: center;
+  background: transparent; color: var(--cream-dim); cursor: pointer;
+  border: 1px solid color-mix(in srgb, var(--cream) 24%, transparent); border-radius: 50%;
+  transition: color .2s var(--ease), border-color .2s var(--ease);
+}
+.slider__pause:hover { color: var(--cream); border-color: var(--cream); }
+.slider__pause svg { width: 13px; height: 13px; }
+.slider__pause .i-play, .slider__pause[aria-pressed="true"] .i-pause { display: none; }
+.slider__pause[aria-pressed="true"] .i-play { display: block; }
 .slider__dot {
   width: 9px; height: 9px; padding: 0;
   background: color-mix(in srgb, var(--cream) 26%, transparent);
@@ -362,10 +383,25 @@ a:hover { text-decoration-color: var(--gold); }
   transition: background-color .3s var(--ease), width .3s var(--ease);
 }
 .slider__dot:hover { background: color-mix(in srgb, var(--cream) 52%, transparent); }
-.slider__dot[aria-selected="true"] { width: 30px; border-radius: 100px; background: var(--gold); }
+.slider__dot[aria-current="true"] { width: 30px; border-radius: 100px; background: var(--gold); }
+/* A bigger tap area than the 9px dot shows. */
+.slider__dot { position: relative; }
+.slider__dot::after { content: ""; position: absolute; inset: -9px -4px; }
 
 @media (max-width: 620px) {
-  .slider__dots { margin-top: 2rem; min-height: 40px; }
+  .slider__controls { margin-top: 1.75rem; min-height: 40px; }
+}
+
+/* Phones and tablets: the cover leads, smaller, with the words under it. */
+@media (max-width: 919px) {
+  /* align-content: every slide shares one grid cell as tall as the tallest
+     slide; without it the spare height is spread between cover and words. */
+  .hero__inner { gap: 1.6rem; align-items: start; align-content: start; }
+  .hero__art { order: -1; max-width: min(64vw, 290px); margin-inline: 0; }
+  .hero__art--photo img { aspect-ratio: 1; }
+  .hero__badge { left: .75rem; bottom: .75rem; font-size: .62rem; padding: .45rem .8rem; }
+  .hero h1, .hero .slide-title { margin-block: .9rem 1rem; }
+  .hero .btn-row { margin-top: 1.5rem; }
 }
 
 /* Award slide: photo instead of square art */
@@ -443,6 +479,17 @@ a:hover { text-decoration-color: var(--gold); }
 }
 .embed iframe { width: 100%; border: 0; display: block; }
 
+.player-tabs { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: .8rem; }
+.player-tab {
+  padding: .55rem 1.05rem; border-radius: 100px; cursor: pointer;
+  background: transparent; color: var(--cream-dim);
+  border: 1px solid color-mix(in srgb, var(--cream) 22%, transparent);
+  font-size: .82rem; font-weight: 600;
+  transition: background-color .2s var(--ease), color .2s var(--ease), border-color .2s var(--ease);
+}
+.player-tab:hover { color: var(--cream); border-color: var(--cream-dim); }
+.player-tab[aria-pressed="true"] { background: var(--gold); border-color: var(--gold); color: #221507; }
+
 .platforms { display: grid; gap: .6rem; margin-top: 1.75rem; }
 .platform {
   display: flex; align-items: center; gap: .9rem;
@@ -463,9 +510,18 @@ a:hover { text-decoration-color: var(--gold); }
 .platform .go { margin-left: auto; color: var(--cream-mute); font-size: .85rem; }
 
 /* --- releases ----------------------------------------------------------- */
+/* Counts are fixed (one feature + four, then five singles), so the columns
+   are too: no row ever ends with a lone card. */
 .releases {
   display: grid; gap: clamp(1.25rem, 2.4vw, 2rem);
-  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  grid-template-columns: repeat(2, 1fr);
+}
+@media (min-width: 1040px) {
+  .releases { grid-template-columns: repeat(4, 1fr); }
+  .releases--singles { grid-template-columns: repeat(5, 1fr); gap: 1.25rem; }
+}
+@media (min-width: 600px) and (max-width: 1039px) {
+  .releases--singles { grid-template-columns: repeat(3, 1fr); }
 }
 .release {
   display: flex; flex-direction: column;
@@ -497,11 +553,63 @@ a:hover { text-decoration-color: var(--gold); }
 }
 .release__link .arrow { transition: transform .25s var(--ease); }
 .release:hover .release__link .arrow { transform: translateX(4px); }
+button.release__link { background: none; border: 0; cursor: pointer; font-family: inherit; }
+.release__more { display: flex; flex-wrap: wrap; gap: .25rem 1.25rem; }
+.release__more .release__link { margin-top: 0; padding-block: .2rem; }
+
+/* Where to hear it: the release's own page in each app. */
+.stores {
+  list-style: none; margin: auto 0 0; padding: .8rem 0 0;
+  display: flex; flex-wrap: wrap; gap: 0 .95rem;
+  border-top: 1px solid color-mix(in srgb, var(--cream) 9%, transparent);
+  font-size: .82rem;
+}
+.stores::before {
+  content: "Listen on"; flex: 0 0 100%; margin-bottom: .1rem;
+  font-size: .62rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--cream-mute);
+}
+.stores a { display: inline-block; padding-block: .3rem; color: var(--gold-lift); font-weight: 500; text-decoration: none; }
+.stores a:hover { text-decoration: underline; }
+
+.release--single .release__body { padding: 1rem 1rem 1.1rem; }
+.release--single .release__body h3 { font-size: 1.1rem; }
+.release--single .release__body p { font-size: .85rem; }
+
+/* The newest release gets the full row: cover beside the words. */
+.release--feature { grid-column: 1 / -1; border-color: color-mix(in srgb, var(--gold) 34%, transparent); }
+.release--feature .release__body { gap: .7rem; padding: clamp(1.25rem, 3vw, 2.5rem); }
+.release--feature .release__body h3 { font-size: clamp(1.7rem, 3.2vw, 2.5rem); }
+.release--feature .release__body p { font-size: 1rem; max-width: 52ch; }
+.release--feature .btn-row { margin-block: .6rem .9rem; }
+.release--feature .stores { margin-top: 0; }
+@media (min-width: 760px) {
+  .release--feature { flex-direction: row; }
+  .release--feature .release__art { flex: 0 0 min(40%, 400px); aspect-ratio: auto; min-height: 340px; }
+  .release--feature .release__art picture { height: 100%; }
+  .release--feature .release__body { justify-content: center; }
+}
+
+/* Phones: the older releases become a compact list, cover at the side. */
+@media (max-width: 599px) {
+  .releases { grid-template-columns: 1fr; gap: .85rem; }
+  .release:not(.release--feature) { flex-direction: row; align-items: flex-start; }
+  .release:not(.release--feature) .release__art { flex: none; width: 104px; margin: .85rem 0 .85rem .85rem; border-radius: var(--r-sm); }
+  .release:not(.release--feature) .release__tag,
+  .release:not(.release--feature) .release__body p { display: none; }
+  .release:not(.release--feature) .release__body { padding: .8rem .95rem .8rem; gap: .25rem; min-width: 0; }
+  .release:not(.release--feature) .release__body h3 { font-size: 1.1rem; }
+  .release:not(.release--feature) .release__meta { font-size: .68rem; }
+  .release:not(.release--feature) .stores { margin-top: .35rem; padding-top: .45rem; gap: 0 .8rem; }
+  .release:hover { transform: none; }
+}
 
 /* --- watch (videos) ----------------------------------------------------- */
 /* Click-to-load facade: a thumbnail button becomes an autoplaying iframe on
    demand. Seven live YouTube embeds up-front would wreck load time. */
-.videos { display: grid; gap: clamp(1rem, 2vw, 1.5rem); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.videos { display: grid; gap: clamp(.7rem, 1.6vw, 1.25rem); grid-template-columns: repeat(2, 1fr); }
+@media (min-width: 900px) { .videos { grid-template-columns: repeat(4, 1fr); } }
+.videos__sub { margin: clamp(2.25rem, 4.5vw, 3.25rem) 0 1.1rem; font-size: 1.15rem; }
 .video {
   position: relative; display: block; width: 100%; padding: 0;
   aspect-ratio: 16 / 9;
@@ -511,7 +619,7 @@ a:hover { text-decoration-color: var(--gold); }
 }
 .video:hover { border-color: color-mix(in srgb, var(--gold) 48%, transparent); transform: translateY(-3px); }
 .video--feature { grid-column: 1 / -1; }
-@media (min-width: 900px) { .video--feature { grid-column: span 2; grid-row: span 2; } }
+@media (min-width: 900px) { .video--feature { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; height: 100%; } }
 
 .video img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.95); transition: transform .6s var(--ease); }
 .video:hover img { transform: scale(1.04); }
@@ -540,7 +648,26 @@ a:hover { text-decoration-color: var(--gold); }
 }
 .video__label small { display: block; font-weight: 500; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); margin-bottom: .2rem; }
 .video--feature .video__label { font-size: 1.05rem; }
-.video.is-playing .video__scrim, .video.is-playing .video__play, .video.is-playing .video__label, .video.is-playing img { display: none; }
+/* Small tiles: one line each, and a smaller play button that clears them. */
+.video:not(.video--feature) .video__label { left: .75rem; right: .75rem; bottom: .6rem; font-size: .86rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.video:not(.video--feature) .video__label small { font-size: .6rem; overflow: hidden; text-overflow: ellipsis; }
+.video:not(.video--feature) .video__play { width: 44px; height: 44px; top: 40%; }
+.video:not(.video--feature) .video__play svg { width: 17px; height: 17px; }
+@media (max-width: 599px) {
+  /* Two small tiles per row leave room for the title only. */
+  .video:not(.video--feature) .video__label small { display: none; }
+  .video:not(.video--feature) .video__play { width: 40px; height: 40px; top: 38%; }
+}
+
+/* One player for every video, opened over the page. */
+.vplayer {
+  border: 0; padding: 0; margin: auto; background: transparent; overflow: visible;
+  width: min(94vw, 1100px, calc(84vh * 16 / 9)); max-width: none; max-height: none;
+}
+.vplayer::backdrop { background: rgba(12, 8, 6, .92); backdrop-filter: blur(6px); }
+.vplayer__frame { aspect-ratio: 16 / 9; background: #000; border-radius: var(--r-md); overflow: hidden; }
+.vplayer__frame iframe { width: 100%; height: 100%; border: 0; display: block; }
+.vplayer[open] { animation: lb-in .32s cubic-bezier(.16,1,.3,1); }
 
 /* TikTok strip: horizontally scrolling row of 9:16 phone-shaped embeds. */
 .shorts { margin-top: clamp(2.5rem, 5vw, 4rem); }
@@ -611,6 +738,9 @@ a:hover { text-decoration-color: var(--gold); }
   border: 1px solid color-mix(in srgb, var(--gold) 26%, transparent);
 }
 .tl__title { font-family: "Fraunces", serif; font-size: 1.1rem; font-weight: 600; line-height: 1.2; }
+.tl__title a { color: inherit; text-decoration: none; }
+.tl__title a:hover { color: var(--gold-lift); }
+.tl__head picture { flex: none; }
 .tl__meta { margin-top: .2rem; font-size: .7rem; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; color: var(--gold); }
 
 .tl ol { list-style: none; margin: 0; padding: 0; counter-reset: trk; }
@@ -695,14 +825,17 @@ a:hover { text-decoration-color: var(--gold); }
 .event__state--past { opacity: .65; }
 
 /* --- gallery ------------------------------------------------------------ */
+/* Nine photos: one large (2 x 2) and eight small. Two, three or four columns
+   all end on a full row, and the fixed row height makes every image fill its
+   cell exactly. */
 .gallery {
-  display: grid; gap: .75rem;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  /* Fixed row height + dense flow: every image fills its cell exactly, so a
-     spanning feature tile can't leave the rest of its row half-empty. */
-  grid-auto-rows: clamp(170px, 22vw, 250px);
+  display: grid; gap: .6rem;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: clamp(150px, 44vw, 240px);
   grid-auto-flow: dense;
 }
+@media (min-width: 700px) { .gallery { gap: .75rem; grid-template-columns: repeat(3, 1fr); grid-auto-rows: clamp(200px, 27vw, 270px); } }
+@media (min-width: 1000px) { .gallery { grid-template-columns: repeat(4, 1fr); grid-auto-rows: clamp(230px, 20vw, 270px); } }
 .gallery figure { margin: 0; border-radius: var(--r-sm); overflow: hidden; background: var(--ink-3); }
 /* The <picture> wrapper must stretch too, or the img's height:100% resolves
    against an auto-height parent and the cell shows dead space below. */
@@ -711,7 +844,6 @@ a:hover { text-decoration-color: var(--gold); }
 .gallery img { width: 100%; height: 100%; object-fit: cover; object-position: center 28%; transition: transform .6s var(--ease), filter .4s var(--ease); filter: saturate(.92); }
 .gallery figure:hover img { transform: scale(1.06); filter: saturate(1.05); }
 .gallery figure:nth-child(1) { grid-column: span 2; grid-row: span 2; }
-@media (max-width: 620px) { .gallery figure:nth-child(1) { grid-column: span 1; grid-row: span 1; } }
 
 /* --- booking CTA -------------------------------------------------------- */
 .booking {
@@ -721,10 +853,41 @@ a:hover { text-decoration-color: var(--gold); }
     linear-gradient(140deg, var(--mahogany), var(--ink));
   border-block: 1px solid color-mix(in srgb, var(--gold) 24%, transparent);
 }
-.booking__inner { display: grid; gap: 2rem; align-items: center; }
-@media (min-width: 860px) { .booking__inner { grid-template-columns: 1.4fr auto; } }
+.booking__inner { display: grid; gap: clamp(2rem, 4vw, 3.5rem); align-items: start; }
+@media (min-width: 900px) { .booking__inner { grid-template-columns: .85fr 1.15fr; } }
 .booking h2 { max-width: 18ch; }
 .booking p { margin-top: 1.1rem; max-width: 46ch; color: var(--cream-dim); }
+.booking__direct { margin-top: 1.75rem; }
+.booking p.booking__alt { font-size: .88rem; color: var(--cream-mute); }
+
+.book-form {
+  display: grid; gap: .9rem;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  background: color-mix(in srgb, var(--ink) 58%, transparent);
+  border: 1px solid color-mix(in srgb, var(--gold) 26%, transparent);
+  border-radius: var(--r-md);
+}
+.book-form h3 { font-size: 1.3rem; }
+.book-form .row2 { display: grid; gap: .9rem; }
+@media (min-width: 560px) { .book-form .row2 { grid-template-columns: 1fr 1fr; } }
+.field { display: grid; gap: .35rem; font-size: .8rem; font-weight: 500; color: var(--cream-dim); }
+.field small { font-weight: 400; color: var(--cream-mute); }
+.field input, .field textarea {
+  width: 100%; padding: .8rem 1rem;
+  background: color-mix(in srgb, var(--cream) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cream) 24%, transparent);
+  border-radius: 10px; color: var(--cream);
+  font-size: 1rem;   /* 16px: iOS zooms the page on anything smaller */
+  transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+}
+.field textarea { min-height: 110px; resize: vertical; }
+.field input::placeholder, .field textarea::placeholder { color: var(--cream-mute); }
+.field input:focus, .field textarea:focus {
+  outline: none; border-color: var(--gold);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 25%, transparent);
+}
+.field input[type="date"] { color-scheme: dark; min-height: 3rem; }
+.booking p.book-form__note { margin-top: 0; max-width: none; font-size: .76rem; color: var(--cream-mute); }
 
 /* --- footer ------------------------------------------------------------- */
 .site-footer { background: var(--ink); padding-block: clamp(3.5rem, 6vw, 5rem) 2rem; }
@@ -760,6 +923,24 @@ a:hover { text-decoration-color: var(--gold); }
   font-size: .8rem; color: var(--cream-mute);
 }
 .footer__bar a { color: var(--cream-mute); }
+
+/* --- skip link ------------------------------------------------------------ */
+.skip-link {
+  position: absolute; left: 1rem; top: -5rem; z-index: 100;
+  padding: .7rem 1.1rem; border-radius: 0 0 10px 10px;
+  background: var(--gold); color: #221507; font-weight: 600; text-decoration: none;
+}
+.skip-link:focus { top: 0; }
+
+/* --- story photo ---------------------------------------------------------- */
+.story__photo {
+  border-radius: var(--r-md); overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--cream) 12%, transparent);
+  background: var(--ink-3);
+}
+.story__photo img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 22%; }
+/* Beside a long column of text the portrait stays in view. */
+@media (min-width: 900px) { .story__photo { position: sticky; top: 96px; } }
 
 /* --- scroll reveal ------------------------------------------------------ */
 .reveal { opacity: 0; transform: translateY(22px); transition: opacity .7s var(--ease), transform .7s var(--ease); }
@@ -1104,6 +1285,11 @@ a:hover { text-decoration-color: var(--gold); }
 
 /* --- milestone timeline --------------------------------------------------- */
 .timeline { margin-top: clamp(3rem, 6vw, 5rem); }
+.timeline__title {
+  font-family: "Inter", sans-serif; font-size: .72rem; font-weight: 600;
+  letter-spacing: .22em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1.75rem;
+}
 .tl-line {
   list-style: none; margin: 0; padding: 0;
   position: relative;
@@ -1153,7 +1339,7 @@ a:hover { text-decoration-color: var(--gold); }
 }
 
 /* --- anchor offset under the sticky header -------------------------------- */
-section[id], div[id="top"] { scroll-margin-top: 84px; }
+section[id], div[id="top"], .release[id] { scroll-margin-top: 84px; }
 
 /* --- lightbox entrance/exit ------------------------------------------------ */
 .lightbox[open] { animation: lb-in .32s cubic-bezier(.16,1,.3,1); }

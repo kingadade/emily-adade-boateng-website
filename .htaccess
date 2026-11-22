@@ -24,6 +24,10 @@ RewriteCond %{HTTP_HOST} ^emilyadadeboateng\.com$ [NC]
 RewriteRule ^(.*)$ https://www.emilyadadeboateng.com/$1 [L,R=301]
 
 
+# --- Not-found page -----------------------------------------------------------
+ErrorDocument 404 /404.html
+AddType application/manifest+json .webmanifest
+
 # --- Working files that ship with the Git checkout but aren't site content ---
 RedirectMatch 404 ^/content/
 # Visitor-counter data, if it has to live inside the web root.
@@ -43,6 +47,12 @@ DirectoryIndex index.html index.php
 </IfModule>
 
 <IfModule mod_headers.c>
+  # Browser safety headers. The site is HTTPS-only (see the rewrite above).
+  Header always set X-Content-Type-Options "nosniff"
+  Header always set Referrer-Policy "strict-origin-when-cross-origin"
+  Header always set X-Frame-Options "SAMEORIGIN"
+  Header always set Strict-Transport-Security "max-age=31536000"
+
   <FilesMatch "\.(html|xml|txt)$">
     Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0"
     Header set Pragma "no-cache"

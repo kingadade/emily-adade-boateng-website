@@ -13,3 +13,6 @@ deploy.sh
 # Visitor counter: live data and the dashboard password
 .stats-data/
 .stats-password
+
+# Python bytecode from the page generators
+__pycache__/

@@ -170,3 +170,13 @@
   .lyr-hero, .lyr-page { background: #fff !important; color: #000 !important; }
   .lyr-hero .eyebrow, .lyr-back { color: #000 !important; }
 }
+
+/* Listen card: which release the store links open. */
+.lyr-page .lyr-card--dark .lyr-from {
+  margin: 1rem 0 .55rem; font-size: .68rem; font-weight: 700;
+  letter-spacing: .16em; text-transform: uppercase; color: #b9a78f;
+}
+.lyr-page .lyr-stream a { flex: 1 1 auto; padding-inline: .9rem; white-space: nowrap; }
+.lyr-card--dark .btn + .btn { margin-top: .5rem; }
+.lyr-card--dark .btn.btn--ghost { color: var(--cream); }
+.lyr-group[id] { scroll-margin-top: 90px; }

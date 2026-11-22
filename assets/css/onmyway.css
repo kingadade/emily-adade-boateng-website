@@ -61,6 +61,18 @@
 .omw__link:first-child:hover { background: var(--gold-lift); }
 
 /* --- share ------------------------------------------------------------ */
+/* --- the music video --------------------------------------------------- */
+.omw__video {
+  width: 100%; min-height: 52px; margin-top: .6rem; padding: 0 1.1rem;
+  display: flex; align-items: center; justify-content: center; gap: .6rem;
+  border-radius: var(--r-sm); border: 1px solid rgba(217,164,65,.45);
+  color: var(--gold-lift); text-decoration: none; font-weight: 600; font-size: .98rem;
+  transition: background .2s var(--ease), border-color .2s var(--ease);
+}
+.omw__video svg { width: 22px; height: 22px; flex: none; }
+.omw__video:hover { background: rgba(217,164,65,.1); border-color: var(--gold); }
+.omw__brand img { width: auto; height: 26px; }
+
 .omw__share { display: flex; gap: .6rem; width: 100%; margin-top: 1rem; }
 .omw__wa, .omw__copy {
   flex: 1; min-height: 48px; display: inline-flex; align-items: center; justify-content: center;
