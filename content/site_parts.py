@@ -4,7 +4,7 @@ and carry their own copies: change the menu here AND there.
 """
 
 SITE = "https://www.emilyadadeboateng.com"
-SITE_CSS_V = "15"  # keep in step with index.html
+SITE_CSS_V = "16"  # keep in step with index.html
 
 ICONS = """<link rel="icon" type="image/png" sizes="48x48" href="/assets/img/favicon-48.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/assets/img/favicon-192.png">

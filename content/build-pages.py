@@ -55,7 +55,7 @@ TAIL = f"""
 SHORT_BIO = ("Emily Adade Boateng is a Ghanaian gospel singer and songwriter from the Western Region. "
              "Born in 2012, she began recording at eleven and has since released three albums, two EPs and "
              "five singles. She won Best New Artiste of the Year and Gospel Song of the Year at the 2025 "
-             "Western Music Awards.")
+             "Western Music Awards, and Discovery of the Year at the 2026 Western Gospel Awards.")
 
 LONG_BIO = [
     "Emily Adade Boateng was born in 2012 in Ghana’s Western Region and started recording at eleven. "
@@ -66,7 +66,8 @@ LONG_BIO = [
     "fourteenth birthday. At the 2025 Western Music Awards she won both Best New Artiste of the Year and "
     "Gospel Song of the Year, the latter for Aseda. In March 2026 she signed with PM Entertainment Consult "
     "as the Takoradi company’s first gospel artiste. The single Defender followed in July 2026, and in "
-    "October she released On My Way, a five-song EP on which she wrote every song.",
+    "October she released On My Way, a five-song EP on which she wrote every song. In November 2026 she was "
+    "named Discovery of the Year at the 6th Western Gospel Awards.",
     "Emily writes her own songs and sings in Twi and English, moving between praise, worship and "
     "jazz-inflected arrangements. Beyond the stage she ministers in prisons, on school and university "
     "campuses, and in orphanages.",
@@ -80,7 +81,7 @@ FACTS = [
     ("Label", "PM Entertainment Consult, Takoradi (since March 2026)"),
     ("Catalogue", "3 albums, 2 EPs and 5 singles: 42 recordings"),
     ("Latest release", "On My Way EP, 24 October 2026"),
-    ("Awards", "Best New Artiste of the Year and Gospel Song of the Year, Western Music Awards 2025"),
+    ("Awards", "Discovery of the Year, Western Gospel Awards 2026. Best New Artiste of the Year and Gospel Song of the Year, Western Music Awards 2025"),
     ("Ministry", "Prisons, school and university campuses, orphanages"),
 ]
 
@@ -99,14 +100,14 @@ RELEASES = [
 
 # (file stem, caption, pixel size) — the full-size JPEG is the download.
 PHOTOS = [
+    ("wga-portrait", "With the Discovery of the Year trophy", "960 × 1280"),
+    ("wga-trophy", "At the Western Gospel Awards", "960 × 1280"),
     ("press-02", "Studio portrait", "1350 × 1800"),
     ("press-04", "Studio portrait, blue", "1350 × 1800"),
-    ("press-05", "At the microphone", "1350 × 1800"),
     ("stage-02", "Live on stage", "1200 × 1800"),
     ("award-trophies", "With both Western Music Awards", "1200 × 1800"),
     ("award-team", "With her team at the awards", "2200 × 1466"),
     ("cover-on-my-way", "On My Way EP cover", "1600 × 1600"),
-    ("cover-defender", "Defender single cover", "1800 × 1800"),
 ]
 
 VIDEOS = [
@@ -232,11 +233,11 @@ def press_page():
 
   <section class="pk-section" id="awards">
     <div class="wrap">
-      <h2>Awards and nominations</h2>
+      <h2>Awards</h2>
       <ul class="pk-awards">
+        <li><strong>Winner</strong><span>Discovery of the Year</span><small>Western Gospel Awards, 6th edition (November 2026). Nominated in five categories.</small></li>
         <li><strong>Winner</strong><span>Best New Artiste of the Year</span><small>Western Music Awards 2025</small></li>
         <li><strong>Winner</strong><span>Gospel Song of the Year, for “Aseda” feat. Joyce Blessing</span><small>Western Music Awards 2025</small></li>
-        <li><strong>Nominee</strong><span>Five nominations: Collaboration, New Gospel Artiste, Female Vocal Performance, Most Popular Song and Discovery of the Year</span><small>Western Gospel Awards, 6th edition (2026)</small></li>
       </ul>
     </div>
   </section>
