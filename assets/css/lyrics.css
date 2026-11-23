@@ -41,7 +41,7 @@
 
 .lyr-layout {
   display: flex; flex-wrap: wrap; gap: clamp(2rem, 5vw, 3.5rem);
-  padding-block: clamp(2rem, 4vw, 2.75rem) clamp(4rem, 8vw, 6rem);
+  padding-block: clamp(2rem, 4vw, 2.75rem) clamp(3rem, 5vw, 4rem);
 }
 .lyr-main { flex: 999 1 34rem; min-width: 0; display: flex; flex-direction: column; gap: 2.1rem; }
 .lyr-aside { flex: 1 1 18rem; min-width: 0; display: flex; flex-direction: column; gap: 1rem; }
@@ -129,7 +129,7 @@
 .lyr-list__m { font-size: .72rem; letter-spacing: .06em; opacity: .75; }
 
 /* --- index page ------------------------------------------------------- */
-.lyr-index { display: flex; flex-direction: column; gap: clamp(2.5rem, 5vw, 3.5rem); padding-block: clamp(2.5rem, 5vw, 3.5rem) clamp(4rem, 8vw, 6rem); }
+.lyr-index { display: flex; flex-direction: column; gap: clamp(2.5rem, 5vw, 3.5rem); padding-block: clamp(2.5rem, 5vw, 3.5rem) clamp(3rem, 5vw, 4rem); }
 .lyr-group__h { font-size: clamp(1.6rem, 3vw, 2.1rem); margin-bottom: 1.1rem; }
 .lyr-tiles { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 19rem), 1fr)); gap: 1rem; }
 .lyr-page .lyr-tile {
