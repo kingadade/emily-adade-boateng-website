@@ -66,7 +66,7 @@ LONG_BIO = [
     "fourteenth birthday. At the 2025 Western Music Awards she won both Best New Artiste of the Year and "
     "Gospel Song of the Year, the latter for Aseda. In March 2026 she signed with PM Entertainment Consult "
     "as the Takoradi company’s first gospel artiste. The single Defender followed in July 2026, and in "
-    "October she released On My Way, a five-song EP on which she wrote every song. In November 2026 she was "
+    "October she released On My Way, a five-song EP on which she wrote every song. On 14 November 2026 she was "
     "named Discovery of the Year at the 6th Western Gospel Awards.",
     "Emily writes her own songs and sings in Twi and English, moving between praise, worship and "
     "jazz-inflected arrangements. Beyond the stage she ministers in prisons, on school and university "
@@ -235,7 +235,7 @@ def press_page():
     <div class="wrap">
       <h2>Awards</h2>
       <ul class="pk-awards">
-        <li><strong>Winner</strong><span>Discovery of the Year</span><small>Western Gospel Awards, 6th edition (November 2026). Nominated in five categories.</small></li>
+        <li><strong>Winner</strong><span>Discovery of the Year</span><small>Western Gospel Awards, 6th edition, 14 November 2026. Nominated in five categories.</small></li>
         <li><strong>Winner</strong><span>Best New Artiste of the Year</span><small>Western Music Awards 2025</small></li>
         <li><strong>Winner</strong><span>Gospel Song of the Year, for “Aseda” feat. Joyce Blessing</span><small>Western Music Awards 2025</small></li>
       </ul>
