@@ -111,6 +111,8 @@ PHOTOS = [
 ]
 
 VIDEOS = [
+    ("Discovery of the Year: the award presentation, Western Gospel Awards 2026", "pMVCAKFzgTU"),
+    ("On stage with Joyce Blessing, Western Gospel Awards 2026", "q0t7DZgmY4I"),
     ("On My Way (official music video)", "VZae3haI7IY"),
     ("Defender (official video)", "eByEmMEnzOM"),
     ("Aseda feat. Joyce Blessing (official music video)", "Wl-ExQuOiQY"),
