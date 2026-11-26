@@ -1402,3 +1402,43 @@ section[id], div[id="top"], .release[id] { scroll-margin-top: 84px; }
   background: linear-gradient(to top, rgba(23,16,12,.9), transparent);
   font-size: .82rem; font-weight: 600; color: var(--cream);
 }
+
+/* --- awards voting panel (Impact and Personality Awards: remove after the show) --- */
+.vote {
+  display: grid; gap: clamp(1.5rem, 3vw, 2.5rem); align-items: center;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+  padding: clamp(1.5rem, 3.5vw, 2.75rem);
+  border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
+  border-radius: var(--r-md);
+  background:
+    radial-gradient(110% 140% at 90% -10%, color-mix(in srgb, var(--crimson-lo) 55%, transparent), transparent 55%),
+    linear-gradient(150deg, var(--mahogany), var(--ink-2));
+}
+@media (min-width: 900px) { .vote { grid-template-columns: minmax(0, 1.2fr) minmax(0, .8fr); } }
+.vote__head h3 { font-size: clamp(1.5rem, 2.6vw, 2.1rem); margin: 1rem 0 .6rem; }
+.vote__head p { color: var(--cream-dim); max-width: 52ch; }
+.vote__cats { list-style: none; margin: 1.5rem 0 0; padding: 0; display: grid; gap: .5rem; max-width: 30rem; }
+.vote__cats li {
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+  padding: .7rem 1rem;
+  background: color-mix(in srgb, var(--ink) 55%, transparent);
+  border: 1px solid color-mix(in srgb, var(--cream) 10%, transparent);
+  border-radius: var(--r-sm);
+  font-size: .95rem; font-weight: 500;
+}
+.vote__cats code {
+  font-family: "Inter", sans-serif; font-weight: 700; letter-spacing: .06em;
+  color: #221507; background: var(--gold);
+  padding: .3rem .7rem; border-radius: 100px; white-space: nowrap;
+}
+.vote__how { margin-top: 1.5rem; }
+.vote__note { margin-top: .9rem; font-size: .8rem; color: var(--cream-mute); }
+.vote__posters { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(.6rem, 1.4vw, 1rem); }
+.vote__posters a {
+  display: block; overflow: hidden; border-radius: var(--r-sm);
+  border: 1px solid color-mix(in srgb, var(--gold) 30%, transparent);
+  transition: transform .3s var(--ease), border-color .3s var(--ease);
+}
+.vote__posters a:hover { transform: translateY(-3px); border-color: var(--gold); }
+.vote__posters img { display: block; width: 100%; height: auto; }
+@media (prefers-reduced-motion: reduce) { .vote__posters a { transition: none; } .vote__posters a:hover { transform: none; } }
